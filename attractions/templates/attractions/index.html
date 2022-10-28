@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col text-center">
+            <h1>Welcome to <span class="brand1">Singapore</span><span class="brand2">Attractions</span></h1>
+            <p class="mb-3">Schedule a visit to any of Singapore's attractions with your friends!</p>
+            {% if request.user.is_anonymous %}
+            <p>
+                Links for log in or sign up.
+            </p>
+            {% else %}
+            <p>
+                Links to see your attraction visits.
+            </p>
+            {% endif %}
+            <img src="{% static 'images/singapore.jpg' %}" class="img-fluid" alt="Singapore">
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -18,16 +18,16 @@
                 {% if request.user.is_anonymous %}
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{% url 'login' %}">Log In</a>
+                           href="login url">Log In</a>
                     </li>
                      <li class="nav-item">
                         <a class="nav-link"
-                           href="{% url 'django_registration_register' %}">Sign Up</a>
+                           href="register url">Sign Up</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{% url 'logout' %}">Log Out</a>
+                           href="logout url">Log Out</a>
                     </li>
                 {% endif %}
             </ul>
