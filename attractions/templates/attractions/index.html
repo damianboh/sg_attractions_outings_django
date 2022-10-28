@@ -1,22 +1,24 @@
 {% extends "base.html" %}
-{% load static %}
 {% block content %}
-    <div class="row">
-        <div class="col text-center">
-            <h1>Welcome to <span class="brand1">Singapore</span><span class="brand2">Attractions</span></h1>
-            <p class="mb-3">Schedule a visit to any of Singapore's attractions with your friends!</p>
-            {% if request.user.is_anonymous %}
-            <p>
-                Links for log in or sign up.
-            </p>
-            {% else %}
-            <p>
-                Links to see your attraction visits.
-            </p>
-            {% endif %}
-            <img src="{% static 'images/singapore.jpg' %}" class="img-fluid" alt="Singapore">
-        </div>
+    
+    <div class=" bg-image shadow-2-strong mainpage">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);  ">
+            <div class="container-fluid pt-5 text-center text-align-middle" style="min-height: 100vh; text-align: middle;" >
+                
+                <br><br>
+                <h1 class="text-light">Welcome to Singapore Attractions</h1><br><br>
+                <h5 class="text-light">Schedule a visit to any of Singapore's attractions with your friends!</h5><br><br>
 
+                {% if request.user.is_anonymous %}
+                <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">Log In to Schedule Visits</a>
+                <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">Sign Up Now</a>
+                {% else %}
+                <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">Log In to Schedule Visits</a>
+                <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">Sign Up Now</a>
+                {% endif %}
+       
+            </div>
+        </div>
     </div>
 
 {% endblock %}

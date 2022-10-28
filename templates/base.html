@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
 <head>
     {% include "_bootstrap_head.html" %}
     <title>{% block title %}{% if title %}{{ title }}{% else %}Visit Singapore Attractions{% endif %}{% endblock %}</title>
@@ -8,25 +9,52 @@
             background: #f0f7ee;
         }
 
+        .toplogo {
+            margin-top: auto;
+            margin-bottom: auto;
+            height : 10%;
+            width : 10%;
+        }
+
+        .navbar{
+            padding-left:10px;
+            padding-right:10px;
+        }
+
+        .navbar-brand {
+            font-size: 1em;
+        }
+
         .navbar.bg-dark {
-            background-color: #273e47 !important;
+            background-color: #B70A13 !important;
         }
 
-        .brand1 {
-            color: #ff784f;
+        .navbar .nav-link {
+            color: #fff !important;
         }
 
-        .brand2 {
-            color: #279af1;
+        .h1 .maintext {
+            color: #ffffff;
         }
+
+        .mainpage {
+           
+            background-image: url('{% static 'images/singapore3.jpg' %}'); 
+            min-height: 100vh;    
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+
     </style>
 </head>
 <body>
 {% include "_navbar.html" %}
-<div class="container-fluid pt-3">
-    {% block content %}
-    {% endblock %}
-</div>
+
+{% block content %}
+{% endblock %}
+
 {% include "_bootstrap_scripts.html" %}
 {% block scripts %}
 {% endblock %}
