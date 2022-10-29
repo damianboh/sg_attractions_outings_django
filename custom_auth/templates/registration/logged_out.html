@@ -1,0 +1,17 @@
+{% extends "auth_base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Successfully Logged Out{% endblock %}
+{% block auth_title %}Logged Out{% endblock %}
+{% block auth_content %}
+<div class="row">
+    <div class="col">
+        <p class="mb-3">Thank you for visiting Singapore Attractions, we hope you will come back soon!</p>
+        <form method="get" action="{% url "login" %}">
+            {{ form|crispy }}
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Log In Again</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

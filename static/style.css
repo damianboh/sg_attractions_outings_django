@@ -11,7 +11,7 @@ body {
 
 .navbar{
     padding-left:10px;
-    padding-right:50px;
+    padding-right:10px;
 }
 
 .navbar-brand {
@@ -30,10 +30,19 @@ body {
     color: #ffffff;
 }
 
-.homepage {   
+.page {   
     background-image: url('images/singapore.jpg'); 
     min-height: 100vh;    
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #B70A13 !important;
+}
+
+.auth-box {
+    max-width: 750px;
+}
+

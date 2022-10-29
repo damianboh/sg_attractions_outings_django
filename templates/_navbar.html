@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img src="{% static 'images/logo.png' %}" class="toplogo"/>
@@ -13,10 +13,13 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                    
-                </li>
-                
+                </li>            
             </ul>
             <ul class="navbar-nav flex-end">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "profile" %}">{{ request.user }}</a></li>  
+                {% endif %}
                 {% if request.user.is_anonymous %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url "login" %}">Log In</a>
@@ -26,7 +29,7 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "login" %}">Log Out</a>
+                        <a class="nav-link" href="{% url "logout" %}">Log Out</a>
                     </li>
                 {% endif %}
             </ul>

@@ -30,8 +30,6 @@ class Dev(Configuration):
 
     ALLOWED_HOSTS = []
 
-    AUTH_USER_MODEL = "custom_auth.User" # custom User model
-
     # Application definition
 
     INSTALLED_APPS = [
@@ -42,6 +40,8 @@ class Dev(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'crispy_forms',
+        'crispy_bootstrap5',
         'attractions',
     ]
 
@@ -86,6 +86,9 @@ class Dev(Configuration):
         }
     }
 
+    # Custom User Model
+    
+    AUTH_USER_MODEL = "custom_auth.User" 
 
     # Password validation
     # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -104,6 +107,10 @@ class Dev(Configuration):
             'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
         },
     ]
+
+    # Crispy Forms
+    CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+    CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
     # Internationalization
