@@ -38,8 +38,7 @@ class User(AbstractUser):
         unique=True,
     )
 
-    first_name = models.CharField(max_length=200, blank=False, null=True)
-    last_name = models.CharField(max_length=200, blank=False, null=True)
+    name = models.CharField(max_length=200, blank=False, null=True)
 
     objects = CustomUserManager()
 

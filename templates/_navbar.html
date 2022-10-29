@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img src="{% static 'images/logo.png' %}" class="toplogo"/>
+            <img src="{% static 'images/logo.png' %}" class="toplogo mx-2"/>
             Singapore Attractions
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -18,7 +18,7 @@
             <ul class="navbar-nav flex-end">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "profile" %}">{{ request.user }}</a></li>  
+                        <a class="nav-link" href="{% url "profile" %}">Welcome, {{ request.user.first_name }} {{ request.user.last_name }}</a></li>  
                 {% endif %}
                 {% if request.user.is_anonymous %}
                     <li class="nav-item">
