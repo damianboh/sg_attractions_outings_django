@@ -1,0 +1,10 @@
+Hi Fellow Singapore Explorer,
+
+You registered for Singapore Attractions, and you need to activate your account within {{ expiration_days }} days.
+
+To do that, please visit this page:
+
+{{ scheme }}://{{ request.get_host }}{% url "django_registration_activate" activation_key %}
+
+Thanks,
+Singapore Attractions Team

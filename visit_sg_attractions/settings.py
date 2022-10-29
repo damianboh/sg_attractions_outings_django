@@ -86,9 +86,9 @@ class Dev(Configuration):
         }
     }
 
-    # Custom User Model
-    
+    # Custom User Model and Registration    
     AUTH_USER_MODEL = "custom_auth.User" 
+    ACCOUNT_ACTIVATION_DAYS = 7
 
     # Password validation
     # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -111,6 +111,14 @@ class Dev(Configuration):
     # Crispy Forms
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+    # Email Backend
+    EMAIL_BACKEND = values.Value()
+    EMAIL_HOST = values.Value()
+    EMAIL_PORT = values.Value()
+    EMAIL_USE_TLS = values.BooleanValue(True)
+    EMAIL_HOST_USER = values.Value()
+    EMAIL_HOST_PASSWORD = values.Value()
 
 
     # Internationalization

@@ -1,0 +1,1 @@
+Activate your Singapore Attractions account! You have {{ expiration_days }} days!

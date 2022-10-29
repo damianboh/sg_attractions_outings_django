@@ -38,10 +38,13 @@ class User(AbstractUser):
         unique=True,
     )
 
+    first_name = models.CharField(max_length=200, blank=False, null=True)
+    last_name = models.CharField(max_length=200, blank=False, null=True)
+
     objects = CustomUserManager()
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    USERNAME_FIELD = "email" # automatically required as it is needed for log in
+    REQUIRED_FIELDS = [] 
 
     def __str__(self):
         return self.email
