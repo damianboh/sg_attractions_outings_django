@@ -1,20 +1,21 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
     
-    <div class=" bg-image shadow-2-strong mainpage">
+    <div class="homepage">
         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);  ">
             <div class="container-fluid pt-5 text-center text-align-middle" style="min-height: 100vh; text-align: middle;" >
                 
                 <br><br>
                 <h1 class="text-light">Welcome to Singapore Attractions</h1><br><br>
-                <h5 class="text-light">Schedule a visit to any of Singapore's attractions with your friends!</h5><br><br>
+                <h5 class="text-light">Schedule a visit to any of Singapore's attractions and invite your friends to join you!</h5><br><br>
 
                 {% if request.user.is_anonymous %}
                 <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">Log In to Schedule Visits</a>
                 <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">Sign Up Now</a>
                 {% else %}
-                <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">Log In to Schedule Visits</a>
-                <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">Sign Up Now</a>
+                <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">View My Visits</a>
+                <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank" role="button">View My Attractions List</a>
                 {% endif %}
        
             </div>

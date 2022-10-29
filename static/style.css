@@ -1,0 +1,39 @@
+body {
+    background: #f0f7ee;
+}
+
+.toplogo {
+    margin-top: auto;
+    margin-bottom: auto;
+    height : 10%;
+    width : 10%;
+}
+
+.navbar{
+    padding-left:10px;
+    padding-right:50px;
+}
+
+.navbar-brand {
+    font-size: 1em;
+}
+
+.navbar.bg-dark {
+    background-color: #B70A13 !important;
+}
+
+.navbar .nav-link {
+    color: #fff !important;
+}
+
+.h1 .maintext {
+    color: #ffffff;
+}
+
+.homepage {   
+    background-image: url('images/singapore.jpg'); 
+    min-height: 100vh;    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
