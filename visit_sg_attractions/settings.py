@@ -30,6 +30,7 @@ class Dev(Configuration):
 
     ALLOWED_HOSTS = []
 
+    AUTH_USER_MODEL = "custom_auth.User" # custom User model
 
     # Application definition
 

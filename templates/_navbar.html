@@ -19,17 +19,14 @@
             <ul class="navbar-nav flex-end">
                 {% if request.user.is_anonymous %}
                     <li class="nav-item">
-                        <a class="nav-link"
-                           href="login url">Log In</a>
+                        <a class="nav-link" href="{% url "login" %}">Log In</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link"
-                           href="register url">Sign Up</a>
+                        <a class="nav-link" href="register url">Sign Up</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link"
-                           href="logout url">Log Out</a>
+                        <a class="nav-link" href="{% url "login" %}">Log Out</a>
                     </li>
                 {% endif %}
             </ul>
