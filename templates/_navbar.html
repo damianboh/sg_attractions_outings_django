@@ -18,7 +18,7 @@
             <ul class="navbar-nav flex-end">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "profile" %}">Welcome, {{ request.user.first_name }} {{ request.user.last_name }}</a></li>  
+                        <a class="nav-link" href="{% url "profile" %}">Welcome, {{ request.user.name }}</a></li>  
                 {% endif %}
                 {% if request.user.is_anonymous %}
                     <li class="nav-item">

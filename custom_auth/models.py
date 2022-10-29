@@ -43,7 +43,7 @@ class User(AbstractUser):
     objects = CustomUserManager()
 
     USERNAME_FIELD = "email" # automatically required as it is needed for log in
-    REQUIRED_FIELDS = [] 
+    REQUIRED_FIELDS = ["name"]
 
     def __str__(self):
         return self.email

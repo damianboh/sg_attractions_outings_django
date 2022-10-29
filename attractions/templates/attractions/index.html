@@ -13,7 +13,7 @@
     <br><br>
     {% if request.user.is_anonymous %}
         <a class="btn btn-outline-light btn-lg" href="{% url "login" %}">Log In</a>
-        <a class="btn btn-outline-light btn-lg" href="https://mdbootstrap.com/docs/standard/">Sign Up Now</a>
+        <a class="btn btn-outline-light btn-lg" href="{% url "django_registration_register" %}">Sign Up Now</a>
     {% else %}
         <a class="btn btn-outline-light btn-lg" href="https://mdbootstrap.com/docs/standard/">View My Visits</a>
         <a class="btn btn-outline-light btn-lg" href="https://mdbootstrap.com/docs/standard/">View My Attractions List</a>

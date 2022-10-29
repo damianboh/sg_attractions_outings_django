@@ -8,7 +8,7 @@ from .models import User
 class RegistrationForm(DefaultRegistrationForm):
     class Meta(DefaultRegistrationForm.Meta):
         model = User
-        fields = ["email", "name", "name"]
+        fields = ["name", "email"]
     # add a submit button
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)

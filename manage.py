@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'visit_sg_attractions.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sg_attractions_outings.settings')
     os.environ.setdefault("DJANGO_CONFIGURATION", "Dev") # for django-configurations, default to Dev
     try:
         # from django.core.management import execute_from_command_line
