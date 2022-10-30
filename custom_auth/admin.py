@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from custom_auth.models import User
+from .models import User, Profile
 from django.utils.translation import gettext_lazy as _
 
 # custom user admin to include email fields instead of username fields
 class CustomUserAdmin(UserAdmin): 
     fieldsets = (
         (None, {"fields": ("email", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name")}),
+        (_("Personal info"), {"fields": ("name",)}),
         (
             _("Permissions"),
             {
@@ -31,8 +31,9 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
     )
-    list_display = ("email", "first_name", "last_name", "is_staff")
-    search_fields = ("email", "first_name", "last_name")
+    list_display = ("email", "name", "is_staff")
+    search_fields = ("email", "name") # changed first_name, last_name to name, changed username to email
     ordering = ("email",)
 
 admin.site.register(User, CustomUserAdmin)
+admin.site.register(Profile)
