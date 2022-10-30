@@ -47,3 +47,11 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+class Profile(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+    about = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return str(self.user.name)
