@@ -42,4 +42,4 @@ def attraction_detail(request, uuid):
 
     context = {"page_group": "search", "attraction": attraction}
 
-    return render(request, "attraction/single_attraction.html", context)
+    return render(request, "attractions/single_attraction.html", context)

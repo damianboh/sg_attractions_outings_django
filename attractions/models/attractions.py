@@ -36,7 +36,7 @@ class Attraction(models.Model):
     class Meta:
         ordering = ["name"]
 
-    uuid = models.SlugField(unique=True, primary_key=True) # this is lookup field in URL
+    uuid = models.TextField(unique=True, primary_key=True) # this is lookup field in URL
     name = models.CharField(max_length=300)
     attraction_type = models.CharField(max_length=300, blank=True, null=True)
     summary = models.TextField(blank=True, null=True)
