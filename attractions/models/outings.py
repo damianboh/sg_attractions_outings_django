@@ -30,3 +30,13 @@ class OutingInvitation(models.Model):
 
     def __str__(self):
         return f"{self.outing} / {self.invitee.name} ({self.invitee.email})"
+
+
+class Comment(models.Model):
+    creator = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    outing = models.ForeignKey(Outing, on_delete=models.CASCADE)
+    content = models.TextField()   
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content
