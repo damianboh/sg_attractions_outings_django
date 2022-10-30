@@ -5,6 +5,7 @@ from django.views import generic
 from django.db.models import Q
 from .models import Profile
 
+
 @login_required
 def profile(request):
     profile = request.user.profile
@@ -25,6 +26,7 @@ def edit_profile(request):
 
     context = {'form': form}
     return render(request, 'custom_auth/edit_profile.html', context)
+
 
 @login_required
 def profiles(request):

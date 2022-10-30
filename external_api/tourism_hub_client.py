@@ -100,8 +100,8 @@ class TourismHubClient:
     # Get a single attraction by its Tourism Hub API UUID
     def get_by_uuid(self, uuid):
         logger.info("Fetching detail for UUID %s", uuid)
-        resp = self.make_request({"i": uuid})
-        return TourismHubAttraction(resp.json())
+        resp = self.make_request({"searchValues": uuid, "searchType": "uuids"})
+        return TourismHubAttraction(resp.json()["data"][0])
 
     # Search for attractions by name, all matching attractions are returned in generator
     def search(self, search):

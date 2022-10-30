@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+import uuid
 
 # custom user manager to use email to log in instead of username
 class CustomUserManager(UserManager): 
@@ -57,6 +58,6 @@ class Profile(models.Model):
         unique=True,
     )
     about = models.TextField(blank=True, null=True) # additional field
-
+ 
     def __str__(self):
         return str(self.user.name)

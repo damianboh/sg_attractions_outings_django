@@ -18,8 +18,10 @@ from django.urls import include, path
 from django_registration.backends.activation.views import RegistrationView
 import custom_auth
 from custom_auth.forms import RegistrationForm
+from . import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
     path('admin/', admin.site.urls),
     path(
         "accounts/register/",
@@ -29,5 +31,5 @@ urlpatterns = [
     path("accounts/", include("django_registration.backends.activation.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("custom_auth.urls")),    
-    path("", include("attractions.urls")),    
+    path("attractions/", include("attractions.urls")),    
 ]
