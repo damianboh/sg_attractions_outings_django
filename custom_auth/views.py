@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import ProfileForm
+from django.views import generic
+from .models import Profile
 
 @login_required
 def profile(request):
@@ -20,3 +22,12 @@ def edit_profile(request):
 
     context = {'form': form}
     return render(request, 'custom_auth/edit_profile.html', context)
+
+
+class ProfilesView(generic.ListView):
+    login_required = True
+    template_name = 'custom_auth/profiles.html'
+    context_object_name = 'profiles'
+
+    def get_queryset(self):
+        return Profile.objects.order_by('name')

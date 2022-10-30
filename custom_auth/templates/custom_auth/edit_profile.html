@@ -1,5 +1,12 @@
-{% extends "base_bg_white_container.html" %}
+{% extends "base_half_bg.html" %}
 {% load crispy_forms_tags %}
-{% block content %}
-{% crispy form %}
-{% endblock content %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block top_content %}<h1 class="text-light text-center">Edit Profile</h1>{% endblock %} 
+{% block content %}   
+    <div class="container-md auth-box pt-5 pb-5" >                                       
+        <div class="card pt-3 pb-3 px-5 rounded">
+            {% crispy form %}
+        </div>		
+    </div>
+{% endblock %}
