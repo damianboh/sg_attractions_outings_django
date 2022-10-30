@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block base_content %}
+<div class="page">
+
+       
+
+<div class="container-md">
+    <h3 class="justify-content-center">{% block header %}{% endblock %}</h3>
+    {% block content %}      
+    {% endblock %}
+</div>                    
+          
+   
+
+</div>
+{% endblock %}

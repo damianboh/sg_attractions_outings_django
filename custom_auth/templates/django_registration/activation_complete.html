@@ -1,9 +1,8 @@
+{% extends "base_bg_white_container.html" %}
 {% block title %}Activation Complete{% endblock %}
 {% load crispy_forms_tags %}
-{% extends "auth_base.html" %}
-{% extends "base.html" %}
-{% block auth_title %}Activation Complete{% endblock %}
-{% block auth_content %}
+{% block header %}Activation Complete{% endblock %}
+{% block content %}
 <p>Your account is now activated! You can now log in and use Singapore Attractions. Enjoy touring Singapore!</p>
 <form method="get" action="{% url "login" %}">
     {{ form|crispy }}

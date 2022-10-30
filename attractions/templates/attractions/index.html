@@ -1,12 +1,14 @@
-{% extends "base.html" %}
+{% extends "base_bg.html" %}
 {% load static %}
 {% block title %}Visit Singapore Attractions{% endblock %}
 {% block content %}     
-
 <div class = "text-center text-align-middle">
-    <br><br>
-    <h1 class="text-light">Welcome to Singapore Attractions</h1><br><br>
-    <h5 class="text-light">
+    {% if request.user.is_authenticated %}
+        <h1 class="text-light">Welcome back, {{ request.user.name }}!</h1><br><br>
+    {% else %}
+        <h1 class="text-light">Welcome to Singapore Attractions</h1><br><br>
+    {% endif %}
+        <h5 class="text-light">
         Search for any Singapore Attraction!<br><br>
         Organise outings to your favourite attractions and invite your friends to join you!
     </h5>
@@ -19,7 +21,5 @@
         <a class="btn btn-outline-light btn-lg" href="">Search Attraction</a>
         <a class="btn btn-outline-light btn-lg" href="">View Saved Attractions</a>
     {% endif %}
-   
 </div>      
-
 {% endblock %}

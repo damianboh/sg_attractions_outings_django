@@ -1,5 +1,11 @@
+html {
+    height: -webkit-fill-available; /* We have to fix html height */
+}
+
 body {
     background: #f0f7ee;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
 }
 
 .toplogo {
@@ -9,16 +15,11 @@ body {
     width : 10%;
 }
 
-.navbar{
-    padding-left:10px;
-    padding-right:10px;
-}
-
 .navbar-brand {
     font-size: 1em;
 }
 
-.navbar.bg-dark {
+.bg-dark {
     background-color: #B70A13 !important;
 }
 
@@ -31,7 +32,11 @@ body {
     color: #ffffff;
 }
 
-.page {   
+.page{
+    min-height: 100vh; 
+}
+
+.page-background {   
     background-image: url('images/singapore.jpg'); 
     min-height: 100vh;    
     background-position: center;

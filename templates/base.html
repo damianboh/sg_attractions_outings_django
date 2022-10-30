@@ -8,19 +8,13 @@
 </head>
 <body>
 {% include "_navbar.html" %}
-<div class="page">
-    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);  ">
-        <div class="container-fluid pt-5" style="min-height: 100vh; " >
-            {% block content %}
-            {% endblock %}
-        </div>
-    </div>
-</div>
+{% block base_content %}
 
 
-
+{% endblock %}
 {% include "_bootstrap_scripts.html" %}
 {% block scripts %}
 {% endblock %}
+{% include "_footer.html" %}
 </body>
 </html>
