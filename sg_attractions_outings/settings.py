@@ -149,6 +149,9 @@ class Dev(Configuration):
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+    # Tourism Hub External API
+    TOURISM_HUB_API_KEY=values.Value()
+
 
 class Prod(Dev): # settings for production
     DEBUG = False
