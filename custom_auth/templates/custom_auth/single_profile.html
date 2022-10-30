@@ -6,16 +6,19 @@
     <div class="container-md auth-box pt-5 pb-5" >            
         <div class="card pt-3 pb-3 px-5 rounded">
             <div class="text-center"> 
-                <h2 class="mt-2 text-profile-header">{{ request.user.profile.name }}</h2>
-                <h6 class="theme-color lead"><a href=mailto:{{ request.user.profile.email }}>{{ request.user.profile.email }}</a></h6>        
+                <h2 class="mt-2 text-profile-header">{{ profile.name }}</h2>
+                <h6 class="theme-color lead"><a href=mailto:{{ profile.email }}>{{ profile.email }}</a></h6>        
             </div>
 
             <hr class="line">	
             <h4 class="mt-2 text-profile-header">About Me</h4>
-            <small class="mt-2 mb-2">{{ request.user.profile.about }}</small>    
+            <small class="mt-2 mb-2">{{ profile.about }}</small>  
+            
+            {% if user.profile.id == profile.id %}
             <div>
                 <a class="btn btn-primary mt-3 mb-3" href="{% url "edit_profile" %}" role="button">Edit Profile</a>
             </div>
+            {% endif %}
 
             <hr class="line">
             

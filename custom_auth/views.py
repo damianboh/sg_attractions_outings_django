@@ -7,7 +7,9 @@ from .models import Profile
 
 @login_required
 def profile(request):
-    return render(request, "custom_auth/profile.html")
+    profile = request.user.profile
+    context = {'profile': profile}
+    return render(request, "custom_auth/single_profile.html", context)
 
 
 @login_required
@@ -31,14 +33,11 @@ def profiles(request):
     context = {'profiles': profiles, 'search_query': search_query}
     return render(request, 'custom_auth/profiles.html', context)
 
-class ProfilesView(generic.ListView):
-    login_required = True
-    template_name = 'custom_auth/profiles.html'
-    context_object_name = 'profiles'
 
-    def get_queryset(self):
-        search_term = self.request.query_params.get('longitude')
-        return Profile.objects.order_by('name')
+class ProfileDetailView(generic.DetailView):
+    login_required = True
+    model = Profile
+    template_name = 'custom_auth/single_profile.html'
 
 
 def searchProfiles(request):
