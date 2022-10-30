@@ -24,6 +24,12 @@ def edit_profile(request):
     context = {'form': form}
     return render(request, 'custom_auth/edit_profile.html', context)
 
+@login_required
+def profiles(request):
+    profiles, search_query = searchProfiles(request)
+
+    context = {'profiles': profiles, 'search_query': search_query}
+    return render(request, 'custom_auth/profiles.html', context)
 
 class ProfilesView(generic.ListView):
     login_required = True
@@ -31,6 +37,7 @@ class ProfilesView(generic.ListView):
     context_object_name = 'profiles'
 
     def get_queryset(self):
+        search_term = self.request.query_params.get('longitude')
         return Profile.objects.order_by('name')
 
 
