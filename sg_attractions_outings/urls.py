@@ -1,4 +1,4 @@
-"""visit_sg_attractions URL Configuration
+"""URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-import custom_auth.views
 from django_registration.backends.activation.views import RegistrationView
+import custom_auth
 from custom_auth.forms import RegistrationForm
 
 urlpatterns = [
@@ -28,6 +28,6 @@ urlpatterns = [
     ),
     path("accounts/", include("django_registration.backends.activation.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("accounts/profile/", custom_auth.views.profile, name="profile"),
-    path('', include('attractions.urls')),    
+    path("accounts/", include("custom_auth.urls")),    
+    path("", include("attractions.urls")),    
 ]

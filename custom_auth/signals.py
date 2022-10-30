@@ -15,11 +15,11 @@ def createProfile(sender, instance, created, **kwargs):
             user=user,
             email=user.email,
             name=user.name,
-            about="I am a Singapore Explorer" # default about, user can edit it
+            about="I am a Singapore Explorer." # default about, user can edit it
         )
 
         subject = 'Welcome to Singapore Attractions'
-        message = 'We are to have you onboard! Feel free to search attractions and organise outings with your friends! Cheers!'
+        message = 'We are glad to have you onboard! Feel free to search attractions and organise outings with your friends! Cheers!'
 
         send_mail(
             subject,
@@ -29,7 +29,6 @@ def createProfile(sender, instance, created, **kwargs):
             fail_silently=False,
         )
         
-
 
 # When Profile is updated, update the User
 def updateUser(sender, instance, created, **kwargs):
