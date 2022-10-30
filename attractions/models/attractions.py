@@ -27,8 +27,7 @@ class Tag(models.Model):
     class Meta:
         ordering = ["name"]
 
-    name = models.TextField(unique=True)
-
+    name = models.CharField(max_length=300)
     def __str__(self):
         return self.name
 
@@ -49,9 +48,8 @@ class Attraction(models.Model):
     website_url = models.CharField(max_length=300, blank=True, null=True)
     admission_info = models.TextField(blank=True, null=True)  
     map_url = models.CharField(max_length=300, blank=True, null=True)
-    tags = models.ManyToManyField(Tag, blank=True) 
-
-    saved_by = models.ManyToManyField(Profile, blank=True, related_name='attractions') 
+    tags = models.ManyToManyField(Tag, related_name='attractions') 
+    saved_by = models.ManyToManyField(Profile, blank=True, related_name='saved_attractions') 
 
     def __str__(self):
         return f"{self.name}"

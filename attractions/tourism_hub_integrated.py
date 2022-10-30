@@ -37,7 +37,7 @@ def fill_attraction_details(attraction):
     attraction.name = attraction_from_api.name
     attraction.attraction_type = attraction_from_api.attraction_type
     attraction.summary = attraction_from_api.summary
-    attraction.full_descriptione = attraction_from_api.full_description
+    attraction.full_description = attraction_from_api.full_description
     attraction.nearest_station = attraction_from_api.nearest_station
     attraction.website_url = attraction_from_api.website_url
     attraction.admission_info = attraction_from_api.admission_info
@@ -57,7 +57,6 @@ def search_and_save(search):
     Perform a search against Tourism Hub API, 
     only if it hasn't been searched recently (past 24 hours). 
     Save each result to the local DB as a partial record
-    i.e. only uuid, name, attraction_type, summary saved.
     """
     # Replace multiple spaces with single spaces, and lowercase the search
     normalized_search_term = re.sub(r"\s+", " ", search.lower())
@@ -82,6 +81,7 @@ def search_and_save(search):
                 "name": attraction_from_api.name,
                 "attraction_type": attraction_from_api.attraction_type,
                 "summary": attraction_from_api.summary,
+                "full_description": attraction_from_api.full_description
             },
         )
 

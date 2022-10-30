@@ -13,7 +13,7 @@ class Outing(models.Model):
 
     attraction = models.ForeignKey(Attraction, on_delete=models.PROTECT)
     start_time = models.DateTimeField()
-    creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    creator = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="created_outings")
     start_notification_sent = models.BooleanField(default=False)
 
     def __str__(self):

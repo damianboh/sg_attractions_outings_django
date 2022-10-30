@@ -14,7 +14,11 @@ def search_attractions(request):
     if request.GET.get('search_term'):
         search_term = request.GET.get('search_term')	
         search_and_save(search_term)    
-        attractions = Attraction.objects.filter(name__icontains=search_term)
+        attractions = Attraction.objects.filter(
+            Q(name__icontains=search_term)|
+            Q(summary__icontains=search_term)|
+            Q(full_description__icontains=search_term)   
+            )
         did_search = True
 
     else:
