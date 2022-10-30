@@ -32,6 +32,10 @@ body {
     color: #ffffff;
 }
 
+.text-profile-header {
+    color: #222222 !important;
+}
+
 .page{
     min-height: 100vh; 
 }
