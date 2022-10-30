@@ -1,0 +1,59 @@
+{% extends "base_half_bg.html" %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block top_content %} 
+    <div class = "row justify-content-center text-center mt-3 mb-3">  
+        <h1 class="text-light pb-1">User Profiles</h1>                      
+        <form id="searchForm" class="form search-box" action="{% url 'profiles' %}" method="get">
+            <div class="input-group">   
+                <input class="form-control rounded input input--text" id="formInput#search" placeholder="Search Users" type="text" name="search_query"
+                    value="{{search_query}}"/>
+                <input class="btn btn-primary" type="submit" value="Search" />
+            </div>
+        </form>               
+    </div>           
+{% endblock %} 
+
+{% block content %} 
+    <div class="container-xxl p-3" style="max-width: 1034px;">
+        <div class="row row-cols-1 row-cols-md-2 g-4 ">            
+        {% for profile in profiles %}
+            <div class="col">
+                <div class="card m-2" style="border-radius: 15px;">
+                    <div class="card-body p-4 m-2">
+                        <div class="d-flex text-black">                  
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1">{{ profile.name }}</h5>
+                                <p class="mb-2 pb-1" style="color: #2b2a2a;">
+                                    <a href=mailto:{{ profile.email }}>{{ profile.email }}</a>
+                                </p>
+                                <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                                    style="background-color: #efefef;">
+                                    <div class="pe-3">
+                                        <p class="small text-muted mb-1">Saved Attractions</p>
+                                        <p class="mb-0">10</p>
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="px-3">
+                                        <p class="small text-muted mb-1">Outings Created</p>
+                                        <p class="mb-0">10</p>
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="ps-3">
+                                        <p class="small text-muted mb-1">Invites</p>
+                                        <p class="mb-0">10</p>
+                                    </div>
+                                </div>  
+                                <p class="mb-2 pt-1" style="color: #2b2a2a;">
+                                    {{ profile.about|slice:"150" }}</a>
+                                </p>                       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>	
+    </div>	  
+
+{% endblock %}

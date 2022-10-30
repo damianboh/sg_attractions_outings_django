@@ -36,11 +36,9 @@ body {
     color: #222222 !important;
 }
 
-
-
 .page-background {   
     background-image: url('images/singapore.jpg'); 
-    min-height: 100vh;    
+      
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -63,5 +61,12 @@ body {
 
 .search-box {
     max-width: 750px;
+}
+
+.flex-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
 }
 

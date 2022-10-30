@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">  
 </head>
 <body>
-{% include "_navbar.html" %}
-{% block base_content %}
-
-
-{% endblock %}
-{% include "_bootstrap_scripts.html" %}
-{% block scripts %}
-{% endblock %}
-{% include "_footer.html" %}
+    {% include "_navbar.html" %}
+    <div class="flex-wrapper">        
+        {% block base_content %}
+        {% endblock %}
+        {% include "_bootstrap_scripts.html" %}
+        {% block scripts %}
+        {% endblock %}
+        {% include "_footer.html" %}
+    </div>
 </body>
 </html>
