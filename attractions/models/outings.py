@@ -2,6 +2,7 @@ from datetime import timedelta
 from django.contrib.auth import get_user_model
 from django.db import models
 from .attractions import Attraction
+from custom_auth.models import Profile
 
 UserModel = get_user_model() # from custom user model
 
@@ -12,7 +13,7 @@ class Outing(models.Model):
 
     attraction = models.ForeignKey(Attraction, on_delete=models.PROTECT)
     start_time = models.DateTimeField()
-    creator = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
     start_notification_sent = models.BooleanField(default=False)
 
     def __str__(self):
@@ -24,7 +25,7 @@ class OutingInvitation(models.Model):
         unique_together = [("invitee", "outing")]
 
     outing = models.ForeignKey(Outing, on_delete=models.CASCADE)
-    invitee = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name="invites")
+    invitee = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="invites")
     attendance_confirmed = models.BooleanField(default=False)
     is_attending = models.BooleanField(default=False)
 
@@ -33,7 +34,7 @@ class OutingInvitation(models.Model):
 
 
 class Comment(models.Model):
-    creator = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
     outing = models.ForeignKey(Outing, on_delete=models.CASCADE)
     content = models.TextField()   
     created_at = models.DateTimeField(auto_now_add=True)

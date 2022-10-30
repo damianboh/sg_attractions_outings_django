@@ -1,6 +1,7 @@
 from datetime import timedelta
 from django.contrib.auth import get_user_model
 from django.db import models
+from custom_auth.models import Profile
 
 UserModel = get_user_model() # from custom user model
 
@@ -43,6 +44,8 @@ class Attraction(models.Model):
     admission_info = models.TextField(blank=True, null=True)  
     map_url = models.CharField(max_length=300, blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True, related_name='attractions') 
+
+    saved_by = models.ManyToManyField(Profile, blank=True, related_name='attractions') 
 
     def __str__(self):
         return f"{self.name}"
