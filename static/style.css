@@ -24,6 +24,7 @@ body {
 
 .navbar .nav-link {
     color: #fff !important;
+    margin-right:20px;
 }
 
 .h1 .maintext {
