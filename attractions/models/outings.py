@@ -24,7 +24,7 @@ class OutingInvitation(models.Model):
     class Meta:
         unique_together = [("invitee", "outing")]
 
-    outing = models.ForeignKey(Outing, on_delete=models.CASCADE)
+    outing = models.ForeignKey(Outing, on_delete=models.CASCADE, related_name="outing_invites")
     invitee = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="invites")
     attendance_confirmed = models.BooleanField(default=False)
     is_attending = models.BooleanField(default=False)

@@ -1,10 +1,12 @@
+from datetime import timedelta
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.views import generic
 from django.db.models import Q
 from attractions.models.attractions import Attraction
-from attractions.models.outings import Outing
+from attractions.models.outings import Outing, OutingInvitation
 from .forms import OutingForm
 from .models import Profile
 from .tourism_hub_integrated import search_and_save, fill_attraction_details
@@ -44,6 +46,7 @@ def attraction_detail(request, uuid):
     outing_form = OutingForm()
 
     if request.method == 'POST': # prevents submitting when user accidentally clicks back
+        # save to or remove from favourites
         if request.POST.get("favourites", "") == 'Save to Favourites':
             attraction.saved_by.add(request.user.profile)
             messages.success(request, 'Attraction added to favourites.')
@@ -51,13 +54,17 @@ def attraction_detail(request, uuid):
             attraction.saved_by.remove(request.user.profile)
             messages.success(request, 'Attraction removed from favourites.')
         else:
+            # creating outings
             outing_form = OutingForm(request.POST)
             if  outing_form.is_valid():
                 outing =  outing_form.save(False)
-                outing.attraction = attraction # outing is to visit this attraction
-                outing.creator = request.user.profile # outing is created by this user
-                outing.save()
-                return redirect("movie_night_detail_ui", outing.pk)
+                if (outing.start_time < timezone.now()):
+                    messages.error(request, 'Unable to create outing as start time is in the past.')
+                else:
+                    outing.attraction = attraction # outing is to visit this attraction
+                    outing.creator = request.user.profile # outing is created by this user
+                    outing.save()
+                    return redirect("movie_night_detail_ui", outing.pk)
 
     if request.user.profile in attraction.saved_by.all(): # save/remove favourites button
         button_value = "Remove from Favourites"
@@ -76,3 +83,14 @@ def saved_attractions(request):
     context = {"page_group": "saved", "attractions": attractions}
 
     return render(request, "attractions/saved.html", context)
+
+@login_required
+def outings(request):
+    created_outings = request.user.profile.created_outings.all()
+    invited_outings = Outing.objects.filter(
+        outing_invites__in = OutingInvitation.objects.filter(invitee=request.user.profile),
+    )
+
+    context = {"page_group": "outings", "created_outings": created_outings, "invited_outings": invited_outings}
+    
+    return render(request, "attractions/outings.html", context)
