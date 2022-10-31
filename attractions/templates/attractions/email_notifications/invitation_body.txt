@@ -1,0 +1,8 @@
+Hi,
+
+{{ creator.email }} has invited you for an outing to {{ outing.attraction.name }} at {{ outing.start_time }}
+
+To confirm your attendance, please visit {{ outing_url }}
+
+Thanks,
+Singapore Attractions Team

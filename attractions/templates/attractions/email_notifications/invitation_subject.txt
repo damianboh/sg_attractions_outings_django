@@ -1,0 +1,1 @@
+Invitation for Outing to {{ outing.attraction.name }}

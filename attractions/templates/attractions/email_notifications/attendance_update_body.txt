@@ -1,0 +1,11 @@
+Hi,
+
+{{ outing_invitation.invitee.email }} has updated their attendance status to your Singapore Attractions Outing for
+{{ outing.attraction.name }}.
+
+They will{% if not is_attending %} not{% endif %} be attending your Singapore Attractions Outing.
+
+To see the full list of attendees, please visit {{ outing_url }}
+
+Thanks,
+Singapore Attractions Team

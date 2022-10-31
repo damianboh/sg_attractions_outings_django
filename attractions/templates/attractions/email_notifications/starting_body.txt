@@ -1,0 +1,8 @@
+Hi,
+
+The Singapore Attractions Outing to {{ outing.attraction.name }} will be starting at {{ outing.start_time }}.
+
+You can see who else is attending at {{ outing_url }}
+
+Thanks,
+Singapore Attractions Team
