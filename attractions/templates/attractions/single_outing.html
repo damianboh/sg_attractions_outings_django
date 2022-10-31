@@ -24,13 +24,14 @@
           
             <h3><span class="badge text-muted my-2" style="background-color: #efefef;">Scheduled for: {{ outing.start_time }}</span></h3> 
     
-            <hr class="line my-3">
-            <h4 class="mt-2 mb-2 text-profile-header">Attraction Summary</h4>
+            <hr class="line my-4">
+            <h3 class="mt-2 mb-2 text-profile-header">Attraction Summary</h3>
             <p>{{ outing.attraction.summary }}</p>
             <a href="{% url 'attraction_detail' outing.attraction.uuid %}">View More</a>
-            <hr class="line my-3">
-
-            <h3>Invites</h3>
+            
+            
+            <hr class="line my-4">
+            <h3 class="line my-3">Invites</h3>
             <ul>
                 {% for invite in outing.invites.all %}
                     <li>
@@ -42,7 +43,7 @@
                 {% endfor %}
             </ul>
             {% if is_in_the_past %}
-                <h4>This outing is in the past, and can&rsquo;t be edited.</h4>
+                <p>This outing is in the past, and invites cannot be added.</p>
             {% else %}
                 {% if is_creator %}
                     <hr class="line my-3">
@@ -54,6 +55,25 @@
                 {% endif %}
             {% endif %}
 
+
+            <hr class="line my-3">
+            <h3 class="line mt-4 mb-3">Comments</h3>
+            {% for comment in comments%}
+                <div class="d-flex align-items-center mb-0">
+                    <h6 class="fw-bold my-2 me-2"><a href={% url 'profile_detail' comment.creator.id %}>{{ comment.creator }}</a></h6>
+                    {% if comment.creator == outing.creator %}
+                        <span class="badge bg-success">Organiser</span>
+                    {% endif %}  
+                </div>             
+                
+                <p class="mt-0 mb-2">{{ comment.created_at }}</p>                       
+                
+                <p class="mb-3 mt-2">
+                  {{ comment.content }}
+                </p>
+                <hr class="line my-4">
+            {% endfor %}
+            {% crispy comment_form %}
         </div>		
     </div>  
 {% endblock %}

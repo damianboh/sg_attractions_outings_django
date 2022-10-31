@@ -35,8 +35,8 @@ class OutingInvitation(models.Model):
 
 class Comment(models.Model):
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    outing = models.ForeignKey(Outing, on_delete=models.CASCADE)
-    content = models.TextField()   
+    outing = models.ForeignKey(Outing, on_delete=models.CASCADE, related_name="comments")
+    content = models.TextField("Comment", blank=True)   
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

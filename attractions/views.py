@@ -8,7 +8,7 @@ from django.views import generic
 from django.db.models import Q
 from attractions.models.attractions import Attraction
 from attractions.models.outings import Outing, OutingInvitation
-from .forms import OutingForm, AttendanceForm, InviteeForm
+from .forms import OutingForm, AttendanceForm, InviteeForm, CommentForm
 from .models import Profile
 from .tourism_hub_integrated import search_and_save, fill_attraction_details
 from django.contrib import messages
@@ -108,9 +108,12 @@ def outing_detail(request, pk):
     # by default no form rendered until below checks are passed
     invitee_form = None # only show to creator
     attendance_form = None # only show to invitee
+    comment_form = CommentForm()
 
     # get all invitees for this outing
     invitees = {invitation.invitee for invitation in outing.outing_invites.all()}
+    
+    comments = outing.comments.all()
 
     is_creator = outing.creator == request.user.profile
     is_in_the_past = outing.start_time < timezone.now()
@@ -154,6 +157,16 @@ def outing_detail(request, pk):
         else:
             invitee_form = InviteeForm()
 
+
+    if request.method == "POST":
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():                
+                comment =  comment_form.save(False)
+                comment.creator = request.user.profile
+                comment.outing = outing
+                comment.save()
+                return redirect(request.path)
+
     context = {
                 "page_group": "outings",
                 "outing": outing,
@@ -161,7 +174,9 @@ def outing_detail(request, pk):
                 "invitee_form": invitee_form,
                 "attendance_form": attendance_form,
                 "is_in_the_past": is_in_the_past,
+                "comment_form": comment_form,
+                "comments": comments,
                 }
 
     return render(
-        request, "attractions/outing_detail.html", context)
+        request, "attractions/single_outing.html", context)
