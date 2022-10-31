@@ -43,6 +43,10 @@ class Dev(Configuration):
         'crispy_forms',
         'crispy_bootstrap5',
         'attractions',
+        "django_celery_results",
+        "django_celery_beat",
+        "rest_framework",
+        "rest_framework.authtoken"
     ]
 
     MIDDLEWARE = [
@@ -153,6 +157,10 @@ class Dev(Configuration):
 
     # Tourism Hub External API
     TOURISM_HUB_API_KEY=values.Value()
+
+    # For Celery Async Tasks
+    CELERY_RESULT_BACKEND = values.Value("django-db")
+    CELERY_BROKER_URL = values.Value()
 
 
 class Prod(Dev): # settings for production
