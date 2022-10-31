@@ -9,7 +9,7 @@ UserModel = get_user_model() # from custom user model
 # A creator creates outing for a particular attracton at a particular time
 class Outing(models.Model):
     class Meta:
-        ordering = ["start_time"]
+        ordering = ["-start_time"]
 
     attraction = models.ForeignKey(Attraction, on_delete=models.PROTECT)
     start_time = models.DateTimeField()

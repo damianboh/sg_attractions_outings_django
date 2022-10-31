@@ -96,8 +96,9 @@ def outings(request):
         outing_invites__in = OutingInvitation.objects.filter(invitee=request.user.profile),
     )
 
-    context = {"page_group": "outings", "created_outings": created_outings, "invited_outings": invited_outings}
-    
+    # context = {"page_group": "outings", "created_outings": created_outings, "invited_outings": invited_outings}
+    context = {"page_group": "outings", "outings": created_outings | invited_outings}
+
     return render(request, "attractions/outings.html", context)
 
 
