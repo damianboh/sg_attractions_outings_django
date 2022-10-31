@@ -19,25 +19,29 @@
             <h4 class="mt-2 text-profile-header">Info</h4>
             <p>{{ attraction.admission_info }}</p> 
             {% endif %}
-    
-            <p>Nearest MRT Station: {{ attraction.nearest_station }}</p> 
 
+            {% if attraction.nearest_station %}    
+            <p>Nearest MRT Station: {{ attraction.nearest_station }}</p> 
+            {% endif %}
+
+            {% if attraction.map_url %} 
             <hr class="line">
             <h4 class="mt-2 mb-2 text-profile-header">Map</h4>
             <iframe src="{{attraction.map_url|safe}}" height="300" width="100%" class="mb-2 mt-2"></iframe> 
+            {% endif %}
 
+            {% if attraction.summary %} 
             <hr class="line">
             <h4 class="mt-2 text-profile-header">Summary</h4>
-            <p>{{ attraction.summary }}</p>       
+            <p>{{ attraction.summary }}</p>   
+            {% endif %}
             
+            {% if attraction.full_description %}       
             <hr class="line">
-            <h4 class="mt-2 text-profile-header">Full Description</h4>
+            <h4 class="mt-2 mb-2 text-profile-header">Full Description</h4>
             <p>{{ attraction.full_description | safe }}</p>  
-        
-
-            <hr class="line">
+            {% endif %}
             
-           
         </div>		
     </div>  
 {% endblock %}
