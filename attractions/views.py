@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.db.models import Q
 from attractions.models.attractions import Attraction
+from attractions.models.outings import Outing
+from .forms import OutingForm
 from .models import Profile
 from .tourism_hub_integrated import search_and_save, fill_attraction_details
 from django.contrib import messages
@@ -39,21 +41,30 @@ def search_attractions(request):
 def attraction_detail(request, uuid):
     attraction = get_object_or_404(Attraction, uuid=uuid)
     fill_attraction_details(attraction)
+    outing_form = OutingForm()
 
     if request.method == 'POST': # prevents submitting when user accidentally clicks back
         if request.POST.get("favourites", "") == 'Save to Favourites':
             attraction.saved_by.add(request.user.profile)
             messages.success(request, 'Attraction added to favourites.')
-        if request.POST.get("favourites", "") == 'Remove from Favourites':
+        elif request.POST.get("favourites", "") == 'Remove from Favourites':
             attraction.saved_by.remove(request.user.profile)
             messages.success(request, 'Attraction removed from favourites.')
+        else:
+            outing_form = OutingForm(request.POST)
+            if  outing_form.is_valid():
+                outing =  outing_form.save(False)
+                outing.attraction = attraction # outing is to visit this attraction
+                outing.creator = request.user.profile # outing is created by this user
+                outing.save()
+                return redirect("movie_night_detail_ui", outing.pk)
 
-    if request.user.profile in attraction.saved_by.all():
+    if request.user.profile in attraction.saved_by.all(): # save/remove favourites button
         button_value = "Remove from Favourites"
     else:
         button_value = "Save to Favourites"
 
-    context = {"page_group": "search", "attraction": attraction, "button_value": button_value}
+    context = {"page_group": "search", "attraction": attraction, "button_value": button_value, "outing_form": outing_form}
 
     return render(request, "attractions/single_attraction.html", context)
 
