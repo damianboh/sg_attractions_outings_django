@@ -1,6 +1,7 @@
 from datetime import timedelta
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.views import generic
@@ -59,12 +60,13 @@ def attraction_detail(request, uuid):
             if  outing_form.is_valid():
                 outing =  outing_form.save(False)
                 if (outing.start_time < timezone.now()):
+                    outing_form.add_error("start_time", "Unable to create outing as start time is in the past.")
                     messages.error(request, 'Unable to create outing as start time is in the past.')
                 else:
                     outing.attraction = attraction # outing is to visit this attraction
                     outing.creator = request.user.profile # outing is created by this user
                     outing.save()
-                    return redirect("movie_night_detail_ui", outing.pk)
+                    return redirect("outing_detail", outing.pk)
 
     if request.user.profile in attraction.saved_by.all(): # save/remove favourites button
         button_value = "Remove from Favourites"
@@ -94,3 +96,4 @@ def outings(request):
     context = {"page_group": "outings", "created_outings": created_outings, "invited_outings": invited_outings}
     
     return render(request, "attractions/outings.html", context)
+

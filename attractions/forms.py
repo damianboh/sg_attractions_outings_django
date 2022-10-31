@@ -2,8 +2,13 @@ from socket import fromshare
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from .models.outings import Outing
+from .models.outings import Outing, OutingInvitation
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 
+UserModel = get_user_model()
+
+# To create outings
 class OutingForm(forms.ModelForm):
     class Meta:
         model = Outing
@@ -13,3 +18,38 @@ class OutingForm(forms.ModelForm):
         super(OutingForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit("submit", "Create"))
+
+
+# To invite users to outings via their email
+class InviteeForm(forms.Form):
+    email = forms.EmailField()
+    _user = False
+
+    def __init__(self, *args, **kwargs):
+        super(InviteeForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit("submit", "Invite"))
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        try:
+            # cache for later
+            self._user = UserModel.objects.get(email=email)
+        except UserModel.DoesNotExist:
+            # only can invite users who have signed up in the website
+            raise ValidationError(f"User with email address '{email}' was not found.")
+
+        return email
+
+
+# To mark whether user is attending
+class AttendanceForm(forms.ModelForm):
+    class Meta:
+        model = OutingInvitation
+        fields = ["is_attending"]
+
+    def __init__(self, *args, **kwargs):
+        super(AttendanceForm, self).__init__(*args, **kwargs)
+        self.fields["is_attending"].label = "Attending?"
+        self.helper = FormHelper()
+        self.helper.add_input(Submit("submit", "Update Attendance"))
