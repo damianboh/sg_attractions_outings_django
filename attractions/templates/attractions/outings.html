@@ -4,6 +4,7 @@
 {% block top_content %}<h1 class="text-light text-center">My Outings</h1>{% endblock %}      
 
 {% block content %}  
+    {% if created_outings or invited_outings %}
     <div class="container-xxl p-5" style="max-width: 1034px;">
         <div class="row row-cols-1 row-cols-md-2 g-4 ">    
         {% for created_outing in created_outings %}
@@ -48,4 +49,13 @@
         {% endfor %}
         </div>	
     </div>	  
+    {% else %} 
+    <div class="container-md pt-5 pb-5" style="max-width: 1034px;" >            
+        <div class="pt-3 pb-3 px-5 rounded" style="background-color: #ffffff;">
+            <div class="mb-3 mt-3 text-center"> 
+                <h6 class="theme-color lead">No outings found. Search for an attraction to create an outing!</h6> 
+            </div>           
+        </div>		
+    </div>
+    {% endif %}
 {% endblock %}
