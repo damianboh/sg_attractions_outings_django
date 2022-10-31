@@ -40,26 +40,19 @@ def attraction_detail(request, uuid):
     attraction = get_object_or_404(Attraction, uuid=uuid)
     fill_attraction_details(attraction)
 
-    context = {"page_group": "search", "attraction": attraction}
+    if request.method == 'POST': # prevents submitting when user accidentally clicks back
+        if request.POST.get("favourites", "") == 'Save to Favourites':
+            attraction.saved_by.add(request.user.profile)
+            messages.success(request, 'Attraction added to favourites.')
+        if request.POST.get("favourites", "") == 'Remove from Favourites':
+            attraction.saved_by.remove(request.user.profile)
+            messages.success(request, 'Attraction removed from favourites.')
 
-    return render(request, "attractions/single_attraction.html", context)
+    if request.user.profile in attraction.saved_by.all():
+        button_value = "Remove from Favourites"
+    else:
+        button_value = "Save to Favourites"
 
-@login_required
-def save_attraction(request, uuid):
-    attraction = get_object_or_404(Attraction, uuid=uuid)
-    attraction.saved_by.add(request.user.profile)
-    messages.success(request, 'Attraction added to saved list.')
-
-    context = {"page_group": "search", "attraction": attraction}
-
-    return render(request, "attractions/single_attraction.html", context)
-
-@login_required
-def remove_attraction(request, uuid):
-    attraction = get_object_or_404(Attraction, uuid=uuid)
-    attraction.saved_by.remove(request.user.profile)
-    messages.success(request, 'Attraction removed from saved list.')
-
-    context = {"page_group": "search", "attraction": attraction}
+    context = {"page_group": "search", "attraction": attraction, "button_value": button_value}
 
     return render(request, "attractions/single_attraction.html", context)

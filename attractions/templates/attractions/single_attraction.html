@@ -24,6 +24,11 @@
             <span class="badge text-muted m-2" style="background-color: #efefef;">{{ tag }}</span>  
             {% endfor %}
 
+            <form action="{% url 'attraction_detail' attraction.uuid %}" method="post">
+                {% csrf_token %}
+                <input class="btn btn-primary mt-2" type="submit" name="favourites" value="{{button_value}}" />
+            </form>
+
             {% if attraction.admission_info %}
             <hr class="line">
             <h4 class="mt-2 text-profile-header">Info</h4>
