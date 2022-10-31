@@ -26,14 +26,14 @@
     
             <hr class="line my-4">
             <h3 class="mt-2 mb-2 text-profile-header">Attraction Summary</h3>
-            <p>{{ outing.attraction.summary }}</p>
+            <p>{{ outing.attraction.summary | safe }}</p>
             <a href="{% url 'attraction_detail' outing.attraction.uuid %}">View More</a>
             
             
             <hr class="line my-4">
             <h3 class="line my-3">Invites</h3>
             <ul>
-                {% for invite in outing.invites.all %}
+                {% for invite in outing.outing_invites.all %}
                     <li>
                         {{ invite.invitee.email }}
                         ({% if invite.attendance_confirmed %}Is {% if not invite.is_attending %}not {% endif %}attending{% else %}Awaiting response{% endif %})

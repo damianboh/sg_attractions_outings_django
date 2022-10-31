@@ -123,7 +123,7 @@ def outing_detail(request, pk):
             # only creator or invitees can access
             raise PermissionDenied("You do not have access to this Outing.")
 
-        invitation = outing.invites.filter(invitee=request.user.profile).first()
+        invitation = outing.outing_invites.filter(invitee=request.user.profile).first()
 
         # only get request parameters for attendance if outing is in the future
         # only show attendance form if not creator, as creator is definitely attending
@@ -160,11 +160,12 @@ def outing_detail(request, pk):
 
     if request.method == "POST":
         comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():                
+        if comment_form.is_valid():            
                 comment =  comment_form.save(False)
-                comment.creator = request.user.profile
-                comment.outing = outing
-                comment.save()
+                if comment.content != '':
+                    comment.creator = request.user.profile
+                    comment.outing = outing
+                    comment.save()
                 return redirect(request.path)
 
     context = {

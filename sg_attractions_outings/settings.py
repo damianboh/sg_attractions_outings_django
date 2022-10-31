@@ -126,6 +126,8 @@ class Dev(Configuration):
     EMAIL_HOST_USER = values.Value()
     EMAIL_HOST_PASSWORD = values.Value()
 
+    BASE_URL = values.Value()
+
 
     # Internationalization
     # https://docs.djangoproject.com/en/3.2/topics/i18n/

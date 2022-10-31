@@ -58,7 +58,7 @@ def send_attendance_change(outing_invitation, is_attending):
         {
             "is_attending": is_attending,
             "outing_invitation": outing_invitation,
-            "outing": outing_invitation.movie_night,
+            "outing": outing_invitation.outing,
             "outing_url": urljoin(settings.BASE_URL, outing_path),
         },
     )

@@ -19,7 +19,7 @@
                                 <h5 class="my-2">{{ created_outing.attraction.name }}</h5>
                                  
                                 <p class="mb-2 pt-2" style="color: #2b2a2a;">
-                                    {{ created_outing.attraction.summary|slice:"100" }}...</a>
+                                    {{ created_outing.attraction.summary|slice:"100"|safe }}...</a>
                                 </p>   
                             </div>
                         </div>
