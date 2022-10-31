@@ -56,3 +56,12 @@ def attraction_detail(request, uuid):
     context = {"page_group": "search", "attraction": attraction, "button_value": button_value}
 
     return render(request, "attractions/single_attraction.html", context)
+
+
+@login_required
+def saved_attractions(request):
+    attractions = request.user.profile.saved_attractions.all()
+    
+    context = {"page_group": "saved", "attractions": attractions}
+
+    return render(request, "attractions/saved.html", context)

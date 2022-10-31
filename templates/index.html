@@ -19,7 +19,7 @@
     {% else %}
         <a class="btn btn-outline-light btn-lg" href="">View My Outings</a>
         <a class="btn btn-outline-light btn-lg" href="{% url "search_attractions" %}">Search Attractions</a>
-        <a class="btn btn-outline-light btn-lg" href="">View Saved Attractions</a>
+        <a class="btn btn-outline-light btn-lg" href="{% url "saved_attractions" %}">View Saved Attractions</a>
     {% endif %}
 </div>      
 {% endblock %}
