@@ -21,7 +21,7 @@ def notify_of_starting_soon():
     email_notifications.notify_of_starting_soon()
 	
 
-# can implement in future
+# can implement in future together with fetch() in javascript
 # @shared_task
 # def search_and_save(search):
 #     return tourism_hub_integrated.search_and_save(search)
