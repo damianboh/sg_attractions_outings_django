@@ -18,9 +18,11 @@
             {% endif %}
 
             <div class="my-3"> 
-                <h2 class="mt-3 text-profile-header" >Outing for {{ outing.attraction.name }}</h2>
+                <h2 class="mt-3 text-profile-header">Outing for {{ outing.attraction.name }}</h2>
                 <h6 class="theme-color lead"><a href={{ outing.attraction.website_url }}>{{ outing.attraction.website_url }}</a></h6>        
-            </div>    
+            </div>  
+            
+            <h6 class="my-3" style="color: #555555;">By {{ outing.creator }} ({{ outing.creator.email }})</h6>
           
             <h3><span class="badge text-muted my-2" style="background-color: #efefef;">Scheduled for: {{ outing.start_time }}</span></h3> 
     
