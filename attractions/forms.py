@@ -18,6 +18,7 @@ class OutingForm(forms.ModelForm):
         super(OutingForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit("submit", "Create"))
+        
 
 
 # To invite users to outings via their email
@@ -25,6 +26,8 @@ class InviteeForm(forms.Form):
     email = forms.EmailField()
     _user = False
 
+    # invitee form not tagged to OutingInvite object as email is used to invite
+    # get user profile from email then create OutingInvite instance manually in views
     def __init__(self, *args, **kwargs):
         super(InviteeForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -34,7 +37,7 @@ class InviteeForm(forms.Form):
         email = self.cleaned_data["email"]
         try:
             # cache for later
-            self._user = UserModel.objects.get(email=email)
+            self._userProfile = UserModel.objects.get(email=email).profile
         except UserModel.DoesNotExist:
             # only can invite users who have signed up in the website
             raise ValidationError(f"User with email address '{email}' was not found.")

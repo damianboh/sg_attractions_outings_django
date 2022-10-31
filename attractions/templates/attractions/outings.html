@@ -9,7 +9,7 @@
         {% for created_outing in created_outings %}
             <div class="col">                
                 <div class="card m-2 h-100" style="border-radius: 15px;">       
-                    <a href="" class="stretched-link"></a>  
+                    <a href="{% url 'outing_detail' created_outing.id %}" class="stretched-link"></a> 
                     <div class="card-body p-4 m-2 ">
                         <div class="d-flex text-black">                  
                             <div class="flex-grow-1 ms-3">
@@ -29,7 +29,7 @@
         {% for invited_outing in invited_outings %}
             <div class="col">                
                 <div class="card m-2 h-100" style="border-radius: 15px;">       
-                    <a href="" class="stretched-link"></a>  
+                    <a href="{% url 'outing_detail' invited_outing.id %}" class="stretched-link"></a>
                     <div class="card-body p-4 m-2 ">
                         <div class="d-flex text-black">                  
                             <div class="flex-grow-1 ms-3">

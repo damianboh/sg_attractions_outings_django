@@ -17,7 +17,7 @@ class Outing(models.Model):
     start_notification_sent = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.name} by {self.creator.name} ({self.creator.email})"
+        return f"{self.attraction.name} by {self.creator.name} ({self.creator.email})"
 
 
 class OutingInvitation(models.Model):

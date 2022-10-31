@@ -8,10 +8,11 @@ from django.views import generic
 from django.db.models import Q
 from attractions.models.attractions import Attraction
 from attractions.models.outings import Outing, OutingInvitation
-from .forms import OutingForm
+from .forms import OutingForm, AttendanceForm, InviteeForm
 from .models import Profile
 from .tourism_hub_integrated import search_and_save, fill_attraction_details
 from django.contrib import messages
+
 
 @login_required
 def search_attractions(request):
@@ -39,6 +40,7 @@ def search_attractions(request):
             }
 
     return render(request, "attractions/search.html", context)
+
 
 @login_required
 def attraction_detail(request, uuid):
@@ -86,6 +88,7 @@ def saved_attractions(request):
 
     return render(request, "attractions/saved.html", context)
 
+
 @login_required
 def outings(request):
     created_outings = request.user.profile.created_outings.all()
@@ -97,3 +100,68 @@ def outings(request):
     
     return render(request, "attractions/outings.html", context)
 
+
+@login_required
+def outing_detail(request, pk):
+    outing = get_object_or_404(Outing, pk=pk)  
+
+    # by default no form rendered until below checks are passed
+    invitee_form = None # only show to creator
+    attendance_form = None # only show to invitee
+
+    # get all invitees for this outing
+    invitees = {invitation.invitee for invitation in outing.outing_invites.all()}
+
+    is_creator = outing.creator == request.user.profile
+    is_in_the_past = outing.start_time < timezone.now()
+
+    if not is_creator:
+        if request.user.profile not in invitees:
+            # only creator or invitees can access
+            raise PermissionDenied("You do not have access to this Outing.")
+
+        invitation = outing.invites.filter(invitee=request.user.profile).first()
+
+        # only get request parameters for attendance if outing is in the future
+        # only show attendance form if not creator, as creator is definitely attending
+        if not is_in_the_past and request.method == "POST":
+            attendance_form = AttendanceForm(request.POST, instance=invitation)
+            if attendance_form.is_valid():
+                attendance_form.save()
+        else:
+            attendance_form = AttendanceForm(instance=invitation)
+
+    else:
+        # only show invite form to creator to invite others
+        if not is_in_the_past and request.method == "POST":
+            invitee_form = InviteeForm(request.POST)
+
+            if invitee_form.is_valid():
+                invitee = invitee_form._userProfile
+                
+                # do not double create invitation
+                if invitee == request.user.profile or invitee in invitees:
+                    invitee_form.add_error(
+                        "email", "That user is the creator or already invited."
+                    )
+                    messages.error(request, "That user is the creator or already invited.")
+                else:
+                    # creator invitation
+                    OutingInvitation.objects.create(
+                        invitee=invitee, outing=outing
+                    )
+                    return redirect(request.path)  # just reload the page
+        else:
+            invitee_form = InviteeForm()
+
+    context = {
+                "page_group": "outings",
+                "outing": outing,
+                "is_creator": is_creator,
+                "invitee_form": invitee_form,
+                "attendance_form": attendance_form,
+                "is_in_the_past": is_in_the_past,
+                }
+
+    return render(
+        request, "attractions/outing_detail.html", context)
