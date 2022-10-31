@@ -41,7 +41,29 @@
 
             <hr class="line">
             
-            <h4 class="mt-2 text-profile-header">My Saved Attractions</h4>    
+            <h4 class="mt-2 mb-3 text-profile-header">My Saved Attractions</h4>  
+            {% for attraction in profile.saved_attractions.all %}
+            <div>
+                <div class="col">                
+                    <div class="card mt-3 mb-3 h-100" style="border-radius: 15px;">        
+                        <a href="{% url 'attraction_detail' attraction.uuid %}" class="stretched-link"></a>          
+                        <div class="card-body ">
+                            <div class="d-flex text-black">                  
+                                <div class="flex-grow-1 ms-3">
+                                    <h5 class="mb-1">{{ attraction.name }}</h5>
+                                    <span class="badge text-muted" style="background-color: #efefef;">{{ attraction.attraction_type }}</span>
+                                    <p class="mb-2 pt-2" style="color: #2b2a2a;">
+                                        {{ attraction.summary|slice:"150" }}</a>
+                                    </p>                       
+                                </div>
+                            </div>
+                        </div>                 
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            
         </div>		
     </div>  
 {% endblock %}
