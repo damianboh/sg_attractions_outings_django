@@ -48,7 +48,7 @@ def attraction_detail(request, uuid):
 def save_attraction(request, uuid):
     attraction = get_object_or_404(Attraction, uuid=uuid)
     attraction.saved_by.add(request.user.profile)
-    messages.add_message(request, messages.INFO, 'Attraction added to saved list.')
+    messages.success(request, 'Attraction added to saved list.')
 
     context = {"page_group": "search", "attraction": attraction}
 
@@ -58,7 +58,7 @@ def save_attraction(request, uuid):
 def remove_attraction(request, uuid):
     attraction = get_object_or_404(Attraction, uuid=uuid)
     attraction.saved_by.remove(request.user.profile)
-    messages.add_message(request, messages.INFO, 'Attraction removed from saved list.')
+    messages.success(request, 'Attraction removed from saved list.')
 
     context = {"page_group": "search", "attraction": attraction}
 

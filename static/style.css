@@ -8,6 +8,10 @@ body {
     min-height: -webkit-fill-available;
 }
 
+.toast:not(.show) {
+    display: block;
+}
+
 .toplogo {
     margin-top: auto;
     margin-bottom: auto;
