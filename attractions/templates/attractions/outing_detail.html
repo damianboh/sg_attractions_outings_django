@@ -27,7 +27,7 @@
             <hr class="line my-3">
             <h4 class="mt-2 mb-2 text-profile-header">Attraction Summary</h4>
             <p>{{ outing.attraction.summary }}</p>
-
+            <a href="{% url 'attraction_detail' outing.attraction.uuid %}">View More</a>
             <hr class="line my-3">
 
             <h3>Invites</h3>

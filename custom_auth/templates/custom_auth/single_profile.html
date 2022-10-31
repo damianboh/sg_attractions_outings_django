@@ -31,7 +31,7 @@
 
             <hr class="line">	
             <h4 class="mt-2 text-profile-header">About Me</h4>
-            <small class="mt-2 mb-2">{{ profile.about }}</small>  
+            <p class="mt-2 mb-2">{{ profile.about }}</p>  
             
             {% if user.profile.id == profile.id %}
             <div>
@@ -61,6 +61,8 @@
                     </div>
                 </div>
             </div>
+            {% empty %}
+            <p>No saved attractions yet.</p>
             {% endfor %}
 
             
