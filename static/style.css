@@ -55,9 +55,14 @@ body {
     background-color: #B70A13 !important;
 }
 
+.attraction-box {
+    max-width: 900px;
+}
+
 .auth-box {
     max-width: 750px;
 }
+
 
 .search-box {
     max-width: 750px;

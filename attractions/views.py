@@ -17,7 +17,7 @@ def search_attractions(request):
         attractions = Attraction.objects.filter(
             Q(name__icontains=search_term)|
             Q(summary__icontains=search_term)|
-            Q(full_description__icontains=search_term)   
+            Q(attraction_type__icontains=search_term)
             )
         did_search = True
 
@@ -25,15 +25,14 @@ def search_attractions(request):
         attractions = []
         did_search = False  
 
-    return render(
-        request,
-        "attractions/search.html",
-        {
+    context = {
             "page_group": "search",
             "attractions": attractions,
             "did_search": did_search,
-        },
-    )
+            "search_term": search_term,
+            }
+
+    return render(request, "attractions/search.html", context)
 
 @login_required
 def attraction_detail(request, uuid):

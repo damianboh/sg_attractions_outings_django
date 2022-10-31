@@ -3,27 +3,41 @@
 {% block title %}Profile{% endblock %}
 {% block top_content %}<h1 class="text-light text-center">Attraction</h1>{% endblock %} 
 {% block content %}   
-    <div class="container-md auth-box pt-5 pb-5" >            
-        <div class="card pt-3 pb-3 px-5 rounded">
-            <div class="text-center"> 
+    <div class="container-md attraction-box pt-5 pb-5"  >            
+        <div class="pt-3 pb-3 px-5 rounded" style="background-color: #ffffff;">
+            <div class="mb-3"> 
                 <h2 class="mt-2 text-profile-header">{{ attraction.name }}</h2>
-                <h6 class="theme-color lead"><a href=mailto:{{ profile.email }}>{{ profile.email }}</a></h6>        
-            </div>
+                <h6 class="theme-color lead"><a href={{ attraction.website_url }}>{{ attraction.website_url }}</a></h6>        
+            </div>           
+     
+            {% for tag in attraction.tags.all %}
+            <span class="badge text-muted m-2" style="background-color: #efefef;">{{ tag }}</span>  
+            {% endfor %}
 
-            <hr class="line">	
-            <h4 class="mt-2 text-profile-header">About Me</h4>
-            <small class="mt-2 mb-2">{{ profile.about }}</small>  
-            
-            {% if user.profile.id == profile.id %}
-            <div>
-                <a class="btn btn-primary mt-3 mb-3" href="{% url "edit_profile" %}" role="button">Edit Profile</a>
-            </div>
+            {% if attraction.admission_info %}
+            <hr class="line">
+            <h4 class="mt-2 text-profile-header">Info</h4>
+            <p>{{ attraction.admission_info }}</p> 
             {% endif %}
+    
+            <p>Nearest MRT Station: {{ attraction.nearest_station }}</p> 
+
+            <hr class="line">
+            <h4 class="mt-2 mb-2 text-profile-header">Map</h4>
+            <iframe src="{{attraction.map_url|safe}}" height="300" width="100%" class="mb-2 mt-2"></iframe> 
+
+            <hr class="line">
+            <h4 class="mt-2 text-profile-header">Summary</h4>
+            <p>{{ attraction.summary }}</p>       
+            
+            <hr class="line">
+            <h4 class="mt-2 text-profile-header">Full Description</h4>
+            <p>{{ attraction.full_description | safe }}</p>  
+        
 
             <hr class="line">
             
-            <h4 class="mt-2 text-profile-header">My Saved Attractions</h4>   
-            <iframe src="https://maps.google.com/maps?q=1.25879,103.818662&hl=es;z=14&amp;output=embed"></iframe> 
+           
         </div>		
     </div>  
 {% endblock %}

@@ -3,6 +3,7 @@ import re
 from datetime import timedelta
 
 from django.utils.timezone import now
+import requests
 
 from .models.attractions import Tag, SearchTerm, Attraction
 from external_api.django_client import get_client_from_settings
@@ -20,9 +21,9 @@ def get_or_create_tags(tag_names):
 
 def fill_attraction_details(attraction):
     """
-    Get full details of movie from Tourism Hub API, save it to DB.
+    Get full details of attraction from Tourism Hub API, save it to DB.
     Only happens when attraction does not have full_record yet
-    i.e. nobody has clicked on the movie to request for full details before
+    i.e. nobody has clicked on the attraction to request for full details before
     attraction here is an object from DB
     """
     if attraction.is_full_record:
@@ -33,22 +34,27 @@ def fill_attraction_details(attraction):
         return
 
     tourism_hub_client = get_client_from_settings()
-    attraction_from_api = tourism_hub_client.get_by_uuid(attraction.uuid)
-    attraction.name = attraction_from_api.name
-    attraction.attraction_type = attraction_from_api.attraction_type
-    attraction.summary = attraction_from_api.summary
-    attraction.full_description = attraction_from_api.full_description
-    attraction.nearest_station = attraction_from_api.nearest_station
-    attraction.website_url = attraction_from_api.website_url
-    attraction.admission_info = attraction_from_api.admission_info
-    attraction.map_url = attraction_from_api.map_url
-    attraction.tags.clear()
 
-    for tag in get_or_create_tags(attraction_from_api.tags):
-        attraction.tags.add(tag)
+    try:
+        attraction_from_api = tourism_hub_client.get_by_uuid(attraction.uuid)
+        attraction.name = attraction_from_api.name
+        attraction.attraction_type = attraction_from_api.attraction_type
+        attraction.summary = attraction_from_api.summary
+        attraction.full_description = attraction_from_api.full_description
+        attraction.nearest_station = attraction_from_api.nearest_station
+        attraction.website_url = attraction_from_api.website_url
+        attraction.admission_info = attraction_from_api.admission_info
+        attraction.map_url = attraction_from_api.map_url
+        attraction.tags.clear()
 
-    attraction.is_full_record = True # full details has been updated
-    attraction.save()
+        for tag in get_or_create_tags(attraction_from_api.tags):
+            attraction.tags.add(tag)
+
+        attraction.is_full_record = True # full details has been updated
+        attraction.save()
+
+    except requests.exceptions.HTTPError:
+        logger.error("Failed to fetch attractions by UUID from API.")
 
 
 
@@ -57,6 +63,7 @@ def search_and_save(search):
     Perform a search against Tourism Hub API, 
     only if it hasn't been searched recently (past 24 hours). 
     Save each result to the local DB as a partial record
+    i.e only uuid, name, attraction_type, summary is saved
     """
     # Replace multiple spaces with single spaces, and lowercase the search
     normalized_search_term = re.sub(r"\s+", " ", search.lower())
@@ -73,19 +80,25 @@ def search_and_save(search):
 
     tourism_hub_client = get_client_from_settings()
 
-    for attraction_from_api in tourism_hub_client.search(search):
-        logger.info("Saving attraction: '%s' / '%s'", attraction_from_api.name, attraction_from_api.uuid)
-        attraction, created = Attraction.objects.get_or_create(
-            uuid=attraction_from_api.uuid,
-            defaults={
-                "name": attraction_from_api.name,
-                "attraction_type": attraction_from_api.attraction_type,
-                "summary": attraction_from_api.summary,
-                "full_description": attraction_from_api.full_description
-            },
-        )
+    try:
 
-        if created:
-            logger.info("Attraction created: '%s'", attraction.name)
+        for attraction_from_api in tourism_hub_client.search(search):
+            logger.info("Saving attraction: '%s' / '%s'", attraction_from_api.name, attraction_from_api.uuid)
+            attraction, created = Attraction.objects.get_or_create(
+                uuid=attraction_from_api.uuid,
+                defaults={
+                    "name": attraction_from_api.name,
+                    "attraction_type": attraction_from_api.attraction_type,
+                    "summary": attraction_from_api.summary,
+                },
+            )
 
-    search_term.save()
+            if created:
+                logger.info("Attraction created: '%s'", attraction.name)
+
+        search_term.save()
+
+    except requests.exceptions.HTTPError:
+
+        search_term.delete() # delete instance of search term since search was unsuccessful
+        logger.error("Failed to fetch attractions by name from API.")

@@ -47,7 +47,7 @@ class Attraction(models.Model):
     nearest_station = models.TextField(blank=True, null=True)
     website_url = models.CharField(max_length=300, blank=True, null=True)
     admission_info = models.TextField(blank=True, null=True)  
-    map_url = models.CharField(max_length=300, blank=True, null=True)
+    map_url = models.URLField(blank=True, null=True)
     tags = models.ManyToManyField(Tag, related_name='attractions') 
     saved_by = models.ManyToManyField(Profile, blank=True, related_name='saved_attractions') 
 

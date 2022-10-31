@@ -2,16 +2,19 @@
 Client for making requests to the Singapore Tourism and Information Services Hub API.
 Results will be returned in a Python TourismHubAttraction Object.
 Client is standalone and decoupled from Django App, Django integrations are included in other files.
+HTML is formatted with allowed text and url links are cleaned.
 """
 
 import logging
-
 import requests
+import re
+from html_sanitizer import Sanitizer
 
 logger = logging.getLogger(__name__)
 
 TOURISM_HUB_API_URL = "https://api.stb.gov.sg/content/attractions/v2/search"
 
+sanitizer = Sanitizer()
 
 class TourismHubAttraction:
     """A simple class to represent attraction data coming back 
@@ -44,13 +47,15 @@ class TourismHubAttraction:
     @property
     def summary(self):
         return self.data["description"]
+
     
     # Values below will only return when user clicks to see attraction in detail
 
     @property
     def full_description(self):
         self.check_for_detail_data_key("body")
-        return self.data["body"]
+        # full_description is html code that should be sanitized
+        return sanitizer.sanitize(self.data["body"])
 
     @property
     def tags(self): 
@@ -65,8 +70,8 @@ class TourismHubAttraction:
     
     @property
     def website_url(self):
-        self.check_for_detail_data_key("officialWebsite")
-        return self.data["officialWebsite"]
+        self.check_for_detail_data_key("officialWebsite")        
+        return format_url(self.data["officialWebsite"])
 
     # This returns admission rate of adults/child etc.
     @property
@@ -80,7 +85,11 @@ class TourismHubAttraction:
         self.check_for_detail_data_key("location")
         latitude = self.data["location"]["latitude"]
         longitude = self.data["location"]["longitude"]
-        return "https://maps.google.com/maps?q=" + str(latitude) + "," + str(longitude) + "&hl=es;z=14&amp;output=embed"
+        # check that latitude and longitude are floats to prevent malicious html from being injected
+        if ((isinstance(latitude, float)) & (isinstance(longitude, float))): 
+            return "https://maps.google.com/maps?q=" + str(latitude) + "," + str(longitude) + "&hl=es;z=14&amp;output=embed"
+        else:
+            return ""
 
 
 class TourismHubClient:
@@ -130,4 +139,12 @@ class TourismHubClient:
             if seen_results >= total_results: # if all results are fetched, stop
                 break
 
-            offset += 50 # since API limit is 50, each page has 50 results            
+            offset += 50 # since API limit is 50, each page has 50 results   
+
+
+def format_url(url):
+    if url == "":
+        return ""
+    if not re.match('(?:http|ftp|https)://', url):
+        return 'https://{}'.format(url)
+    return url    
