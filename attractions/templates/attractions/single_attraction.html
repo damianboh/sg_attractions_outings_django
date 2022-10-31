@@ -29,9 +29,9 @@
                 <input class="btn btn-primary mt-2" type="submit" name="favourites" value="{{button_value}}" />
             </form>
 
-            {% if attraction.admission_info %}
             <hr class="line">
             <h4 class="mt-2 text-profile-header">Info</h4>
+            {% if attraction.admission_info %}            
             <p>{{ attraction.admission_info }}</p> 
             {% endif %}
 
@@ -48,7 +48,7 @@
             {% if attraction.summary %} 
             <hr class="line">
             <h4 class="mt-2 text-profile-header">Summary</h4>
-            <p>{{ attraction.summary }}</p>   
+            <p>{{ attraction.summary | safe }}</p>   
             {% endif %}
             
             {% if attraction.full_description %}       

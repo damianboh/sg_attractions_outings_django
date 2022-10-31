@@ -46,7 +46,8 @@ class TourismHubAttraction:
 
     @property
     def summary(self):
-        return self.data["description"]
+        # summary is html code that should be sanitized
+        return sanitizer.sanitize(self.data["description"])
 
     
     # Values below will only return when user clicks to see attraction in detail
