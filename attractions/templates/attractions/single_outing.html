@@ -62,7 +62,7 @@
             <h3 class="line mt-4 mb-3">Comments</h3>
             {% for comment in comments%}
                 <div class="d-flex align-items-center mb-0">
-                    <h6 class="fw-bold my-2 me-2"><a href={% url 'profile_detail' comment.creator.id %}>{{ comment.creator }}</a></h6>
+                    <h6 class="fw-bold my-2 me-2"><a href={% url 'profile_detail' comment.creator.email %}>{{ comment.creator }}</a></h6>
                     {% if comment.creator == outing.creator %}
                         <span class="badge bg-success">Organiser</span>
                     {% endif %}  

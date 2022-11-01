@@ -53,10 +53,7 @@ class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200, blank=False, null=True)
-    email = models.EmailField(
-        _("email address"),
-        unique=True,
-    )
+    email = models.EmailField(_("email address"), primary_key=True, unique=True)
     about = models.TextField(blank=True, null=True) # additional field
  
     def __str__(self):

@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from .attractions import Attraction
 from custom_auth.models import Profile
+import uuid
 
 UserModel = get_user_model() # from custom user model
 
@@ -11,6 +12,7 @@ class Outing(models.Model):
     class Meta:
         ordering = ["-start_time"]
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     attraction = models.ForeignKey(Attraction, on_delete=models.PROTECT)
     start_time = models.DateTimeField()
     creator = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="created_outings")

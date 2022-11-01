@@ -8,7 +8,6 @@ from django.conf import settings
 # Create Profile when User is created and saved, with the same name, email and a default about
 # Sends email to User when User is created
 def createProfile(sender, instance, created, **kwargs):
-    print("fired")
     if created:
         user = instance
         profile = Profile.objects.create(
@@ -32,7 +31,6 @@ def createProfile(sender, instance, created, **kwargs):
 
 # When Profile is updated, update the User
 def updateUser(sender, instance, created, **kwargs):
-    print("fired")
     profile = instance
     user = profile.user
 
