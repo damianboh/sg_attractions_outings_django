@@ -137,7 +137,7 @@ def outing_detail(request, pk):
 
     else:
         # only show invite form to creator to invite others
-        if not is_in_the_past and request.method == "POST":
+        if not is_in_the_past and "submit_invite" in request.POST:
             invitee_form = InviteeForm(request.POST)
 
             if invitee_form.is_valid():
@@ -159,14 +159,13 @@ def outing_detail(request, pk):
             invitee_form = InviteeForm()
 
 
-    if request.method == "POST":
+    if "submit_comment" in request.POST:
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():            
                 comment =  comment_form.save(False)
-                if comment.content != '':
-                    comment.creator = request.user.profile
-                    comment.outing = outing
-                    comment.save()
+                comment.creator = request.user.profile
+                comment.outing = outing
+                comment.save()
                 return redirect(request.path)
 
     context = {

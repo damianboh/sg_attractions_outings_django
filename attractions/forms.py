@@ -31,7 +31,7 @@ class InviteeForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(InviteeForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit("submit", "Invite"))
+        self.helper.add_input(Submit("submit_invite", "Invite"))
 
     def clean_email(self):
         email = self.cleaned_data["email"]
@@ -67,4 +67,4 @@ class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit("submit", "Add Comment"))
+        self.helper.add_input(Submit("submit_comment", "Add Comment"))
