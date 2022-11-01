@@ -1,0 +1,33 @@
+{% extends "rest_framework/base.html" %}
+{% block title %}{% if name %}{{ name }} – {% endif %} Singapore Attractions REST API{% endblock %}
+{% block branding %}
+<a href="/" class="navbar-brand">
+Singapore Attractions REST API
+</a>
+{% endblock %}
+
+{% block style %}
+{{ block.super }}
+<style>
+div .navbar {
+    border-top-color: #B70A13;
+    background-color: #B70A13 !important;
+}
+
+.bg-dark {
+    background-color: #B70A13 !important;
+}
+
+div .navbar-brand {
+    color: #fff !important;
+    margin-right:20px;
+}
+
+div .navbar-brand:hover {
+    color: #ddd !important;
+    margin-right:20px;
+}
+</style>
+{% endblock %}
+
+
