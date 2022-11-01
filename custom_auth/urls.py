@@ -1,5 +1,4 @@
 from django.urls import include, path
-from custom_auth.forms import RegistrationForm
 from . import views
 
 urlpatterns = [
