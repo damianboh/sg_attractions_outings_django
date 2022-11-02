@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from custom_auth.models import Profile
 from django.utils import timezone
-from datetime import datetime
+import datetime
 
 UserModel = get_user_model() # from custom user model
 
