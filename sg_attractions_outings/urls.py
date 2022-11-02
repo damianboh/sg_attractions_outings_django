@@ -31,6 +31,7 @@ urlpatterns = [
     path("accounts/", include("django_registration.backends.activation.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("custom_auth.urls")),    
-    path("attractions/", include("attractions.urls")),    
-    path("api/v1/", include("custom_auth.api.urls")),
+    path("attractions/", include("attractions.urls")),  
+    path("api/v1/", include("sg_attractions_outings.api_urls")), # api urls in separate file in same folder
+    
 ]

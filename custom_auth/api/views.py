@@ -9,4 +9,4 @@ class ProfileDetail(generics.RetrieveAPIView): # no list view, only detail view 
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     lookup_field = "email"
-	permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]

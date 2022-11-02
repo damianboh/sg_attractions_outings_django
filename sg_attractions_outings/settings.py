@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from configurations import Configuration, values
 import dj_database_url
+from datetime import timedelta
 
 class Dev(Configuration):
 
@@ -46,7 +47,8 @@ class Dev(Configuration):
         "django_celery_results",
         "django_celery_beat",
         "rest_framework",
-        "rest_framework.authtoken"
+        "rest_framework.authtoken",
+        "drf_yasg",
     ]
 
     MIDDLEWARE = [
@@ -127,6 +129,26 @@ class Dev(Configuration):
     EMAIL_HOST_PASSWORD = values.Value()
 
     BASE_URL = values.Value()
+
+    # for Django REST Framework
+    REST_FRAMEWORK = {
+        "DEFAULT_AUTHENTICATION_CLASSES": [
+            "rest_framework.authentication.BasicAuthentication",
+            "rest_framework.authentication.SessionAuthentication",
+            "rest_framework.authentication.TokenAuthentication",
+            "rest_framework_simplejwt.authentication.JWTAuthentication"
+        ],
+        "DEFAULT_PAGINATION_CLASS":	"rest_framework.pagination.PageNumberPagination",
+        "PAGE_SIZE": 100,
+        "DEFAULT_FILTER_BACKENDS": [ 
+            "django_filters.rest_framework.DjangoFilterBackend"
+        ],
+    }
+
+    SIMPLE_JWT = {
+        "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+        "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    }
 
     # Swagger browsable API UI
     SWAGGER_SETTINGS = {

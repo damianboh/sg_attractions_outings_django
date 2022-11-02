@@ -17,13 +17,13 @@ from attractions.api.serializers import (
     OutingCreateSerializer,
 )
 from attractions.models import Attraction, Outing, OutingInvitation, Tag
-from attractions.tourism_hub_intergrated import fill_attraction_details, search_and_save
+from attractions.tourism_hub_integrated import fill_attraction_details, search_and_save
 
 
 class AttractionViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Attraction.objects.all()
     serializer_class = AttractionSerializer
-	fields = ["tags"] # using django-filter
+    fields = ["tags"] # using django-filter
 
     def get_object(self):
         attraction = super().get_object()
@@ -141,4 +141,4 @@ class OutingInvitationViewSet(
 
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
-    serializer_class = GenreSerializer
+    serializer_class = TagSerializer
