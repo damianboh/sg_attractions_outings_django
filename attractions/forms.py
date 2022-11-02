@@ -1,10 +1,12 @@
 from socket import fromshare
+from django.utils import timezone
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from .models.outings import Outing, OutingInvitation, Comment
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
 
 UserModel = get_user_model()
 
@@ -19,7 +21,15 @@ class OutingForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.add_input(Submit("submit", "Create"))
         
-
+    def clean_start_time(self):
+        start_time = self.cleaned_data["start_time"]
+        if start_time < timezone.now():
+            raise ValidationError(
+                _("Unable to create outing as start time is in the past."), 
+                    code='invalid'
+                )
+        
+        return start_time
 
 # To invite users to outings via their email
 class InviteeForm(forms.Form):
@@ -40,8 +50,12 @@ class InviteeForm(forms.Form):
             self._userProfile = UserModel.objects.get(email=email).profile
         except UserModel.DoesNotExist:
             # only can invite users who have signed up in the website
-            raise ValidationError(f"User with email address '{email}' was not found.")
-
+            raise ValidationError(
+                _("User with email address '%(email)s' was not found."), 
+                    code='invalid', 
+                params={'email':email}
+                )
+        
         return email
 
 
