@@ -128,6 +128,15 @@ class Dev(Configuration):
 
     BASE_URL = values.Value()
 
+    # Swagger browsable API UI
+    SWAGGER_SETTINGS = {
+        "SECURITY_DEFINITIONS": {
+        "Token": {"type": "apiKey", "name": "Authorization",
+        "in": "header"},
+        "Basic": {"type": "basic"},
+        }
+    }
+
 
     # Internationalization
     # https://docs.djangoproject.com/en/3.2/topics/i18n/
