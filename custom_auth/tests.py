@@ -11,29 +11,32 @@ class UserAndProfileSyncTests(TestCase):
     - When profile is deleted, corresponding user is also deleted.
     The above are set up in signals.
     """
+
     def setUp(self):
         self.name = "name1"
         self.email = "user1@example.com"
-        User.objects.create(name=self.name, email=self.email)
-        
+        User.objects.create(name=self.name, email=self.email)        
    
     def test_profile_created_when_user_created(self):
-        profile = Profile.objects.all().first()
-        self.assertEqual(profile.name, self.name)
+        # check if corresponding profile is created from above user
+        profile = Profile.objects.get(name=self.name)
         self.assertEqual(profile.email, self.email)
         
     def test_user_updated_when_profile_updated(self):
-        profile = Profile.objects.all().first()
+        profile = Profile.objects.get(name=self.name)
         updated_name = "name1_updated"
-        #updated_email = "updated@email.com"
         profile.name = updated_name
-        #profile.email = updated_email
         profile.save()
         
-        user = User.objects.all().first()
-        
-        print(user)
-        
+        user = User.objects.all().first()                
         self.assertEqual(user.name, updated_name)
+
+    def test_user_deleted_when_profile_deleted(self):
+        profile = Profile.objects.get(name=self.name)
+        profile.delete()
+
+        # check that does not exist is raised i.e. user has been deleted
+        with self.assertRaises(User.DoesNotExist): 
+            User.objects.get(name=self.name)
   
         
