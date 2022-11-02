@@ -61,14 +61,13 @@ def attraction_detail(request, uuid):
             outing_form = OutingForm(request.POST)
             if  outing_form.is_valid():
                 outing =  outing_form.save(False)
-                if (outing.start_time < timezone.now()):
-                    outing_form.add_error("start_time", "Unable to create outing as start time is in the past.")
-                    messages.error(request, 'Unable to create outing as start time is in the past.')
-                else:
-                    outing.attraction = attraction # outing is to visit this attraction
-                    outing.creator = request.user.profile # outing is created by this user
-                    outing.save()
-                    return redirect("outing_detail", outing.pk)
+                outing.attraction = attraction # outing is to visit this attraction
+                outing.creator = request.user.profile # outing is created by this user
+                outing.save()
+                return redirect("outing_detail", outing.pk)
+            else:
+                messages.error(request, outing_form.errors["start_time"])
+                return redirect(request.path)  # just reload the page
 
     if request.user.profile in attraction.saved_by.all(): # save/remove favourites button
         button_value = "Remove from Favourites"
