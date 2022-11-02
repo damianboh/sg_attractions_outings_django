@@ -11,7 +11,6 @@ class UserAndProfileSyncTests(TestCase):
     - When profile is deleted, corresponding user is also deleted.
     The above are set up in signals.
     """
-
     def setUp(self):
         self.name = "name1"
         self.email = "user1@example.com"

@@ -149,11 +149,13 @@ def outing_detail(request, pk):
                     )
                     messages.error(request, "That user is the creator or already invited.")
                 else:
-                    # creator invitation
                     OutingInvitation.objects.create(
                         invitee=invitee, outing=outing
                     )
                     return redirect(request.path)  # just reload the page
+            else:
+                messages.error(request,  invitee_form.errors["email"])
+                return redirect(request.path)  # just reload the page
         else:
             invitee_form = InviteeForm()
 
