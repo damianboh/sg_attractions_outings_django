@@ -22,7 +22,8 @@ class TagSerializer(serializers.ModelSerializer):
 class AttractionSerializer(serializers.ModelSerializer):
 	# to allow creation of new Tag when Attraction instance is created
     tag = TagField(slug_field="name", many=True, read_only=True)
-
+    tags = serializers.StringRelatedField(many=True)
+    
     class Meta:
         model = Attraction
         fields = "__all__"
@@ -55,7 +56,7 @@ class AttractionNameAndUrlSerializer(serializers.ModelSerializer):
 class OutingInvitationSerializer(serializers.ModelSerializer):
 	# invitee will be shown as url link
     invitee = serializers.HyperlinkedRelatedField(
-        "profile_detail", read_only=True, lookup_field="email"
+        "profile_detail", read_only=True, lookup_field="pk"
     )
 
     class Meta:
@@ -67,7 +68,7 @@ class OutingInvitationSerializer(serializers.ModelSerializer):
 # need to validate_invitee before creation, invitee might have been already invited
 class OutingInvitationCreationSerializer(serializers.ModelSerializer):
     invitee = serializers.HyperlinkedRelatedField(
-        "profile_detail", queryset=Profile.objects.all(), lookup_field="email"
+        "profile_detail", queryset=Profile.objects.all(), lookup_field="pk"
     )
 
     class Meta:
@@ -96,7 +97,7 @@ class OutingInvitationCreationSerializer(serializers.ModelSerializer):
 class OutingSerializer(serializers.ModelSerializer):
     attraction = AttractionNameAndUrlSerializer(read_only=True)
     creator = serializers.HyperlinkedRelatedField(
-        "profile_detail", read_only=True, lookup_field="email"
+        "profile_detail", read_only=True, lookup_field="pk"
     )
     invites = OutingInvitationSerializer(read_only=True, many=True)
 

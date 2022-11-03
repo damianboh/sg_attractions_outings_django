@@ -43,7 +43,7 @@ class AttractionViewSet(viewsets.ReadOnlyModelViewSet):
 
         search_and_save(term)
 
-        attractions = self.get_queryset().filter(title__icontains=term)
+        attractions = self.get_queryset().filter(name__icontains=term)
 
         page = self.paginate_queryset(attractions)
 
