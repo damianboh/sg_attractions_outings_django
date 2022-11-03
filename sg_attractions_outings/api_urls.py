@@ -9,9 +9,9 @@ import os
 
 schema_view = get_schema_view(
 	openapi.Info(
-		title="Blango API",
+		title="Singapore Attractions Outings API",
 		default_version="v1",
-		description="API for Blango Blog",
+		description="API for Singapore Attractions Outings",
 		),
 		public=True,
 )
