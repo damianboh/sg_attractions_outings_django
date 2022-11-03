@@ -71,15 +71,17 @@ class OutingViewSet(viewsets.ModelViewSet):
     def get_object(self):
         outing = super(OutingViewSet, self).get_object()
         if (
+            # invitee and creator can view outing details
             outing.creator != self.request.user.profile
-            and outing.invites.filter(invitee=self.request.user.profile).count() == 0
+            and outing.outing_invites.filter(invitee=self.request.user.profile).count() == 0 
         ):
             raise PermissionDenied()
         return outing
 
     def get_queryset(self):
         if self.action == "list":
-            return self.queryset.filter(creator=self.request.user.profile)
+            # only can view created outings
+            return self.queryset.filter(creator=self.request.user.profile) 
         return super(OutingViewSet, self).get_queryset()
 
     def perform_create(self, serializer):
@@ -89,7 +91,8 @@ class OutingViewSet(viewsets.ModelViewSet):
     @action(detail=False)
     def invited(self, request):
         outings = Outing.objects.filter(
-            invites__in=OutingInvitation.objects.filter(invitee=request.user.profile)
+            # only can view invited outings
+            outing_invites__in=OutingInvitation.objects.filter(invitee=request.user.profile) 
         )
 
         page = self.paginate_queryset(outings)
