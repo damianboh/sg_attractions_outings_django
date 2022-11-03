@@ -1,6 +1,6 @@
 from django.test import TestCase
 import datetime
-from .models import User, Profile
+from ..models import User, Profile
 
 
 class UserAndProfileSyncTests(TestCase):
