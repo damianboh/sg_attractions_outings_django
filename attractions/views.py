@@ -152,10 +152,8 @@ def outing_detail(request, pk):
                     OutingInvitation.objects.create(
                         invitee=invitee, outing=outing
                     )
-                    return redirect(request.path)  # just reload the page
             else:
                 messages.error(request,  invitee_form.errors["email"])
-                return redirect(request.path)  # just reload the page
         else:
             invitee_form = InviteeForm()
 
