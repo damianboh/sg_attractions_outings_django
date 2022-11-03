@@ -39,6 +39,7 @@ class AttractionSerializer(serializers.ModelSerializer):
 			"map_url",
 			"saved_by",
             "is_full_record",
+            "tags",
 		]
 
 
