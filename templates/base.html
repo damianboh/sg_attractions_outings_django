@@ -2,9 +2,10 @@
 <html lang="en">
 {% load static %}
 <head>
-    {% include "_head.html" %}
+    {% include "_header.html" %}
     <title>{% block title %}{% if title %}{{ title }}{% else %}Visit Singapore Attractions{% endif %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">  
+    <link rel="stylesheet" href="{% static 'style.css' %}"> 
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}"> 
 </head>
 <body>
     {% include "_navbar.html" %}

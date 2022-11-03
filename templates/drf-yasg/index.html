@@ -1,0 +1,14 @@
+{% extends "drf-yasg/swagger-ui.html" %}
+{% load static %}
+{% block extra_body %}
+<a href="#" class="link">
+    <img src="{% static 'images/logo.png' %}" alt="Swagger Logo">
+    <span>MY SWAG</span>
+</a>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+swaggerUiConfig.layout = "BaseLayout";
+</script>
+{% endblock %}

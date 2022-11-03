@@ -1,6 +1,9 @@
-{% extends "rest_framework/base.html" %}
+{% extends "drf_yasg/swagger-ui.html" %}
+{% load static %}
 {% block title %}{% if name %}{{ name }} – {% endif %} Singapore Attractions REST API{% endblock %}
+
 {% block branding %}
+<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}"> 
 <a href="/" class="navbar-brand">
 Singapore Attractions REST API
 </a>
@@ -9,6 +12,13 @@ Singapore Attractions REST API
 {% block style %}
 {{ block.super }}
 <style>
+div .toplogo {
+    margin-top: auto;
+    margin-bottom: auto;
+    height : 10%;
+    width : 10%;
+}
+
 div .navbar {
     border-top-color: #B70A13;
     background-color: #B70A13 !important;

@@ -2,6 +2,8 @@ from django.urls import path, include
 from rest_framework.authtoken import views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from sg_attractions_outings.settings import BASE_URL
+
 # for swagger UI
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
@@ -11,7 +13,8 @@ schema_view = get_schema_view(
 	openapi.Info(
 		title="Singapore Attractions Outings API",
 		default_version="v1",
-		description="API for Singapore Attractions Outings",
+		description="API for Singapore Attractions Outings, by Damian Boh :)",
+		url= BASE_URL
 		),
 		public=True,
 )
@@ -28,14 +31,5 @@ urlpatterns = [
 		
 	# API
     path("profiles/", include("custom_auth.api.urls")), # all APIs for getting user profiles info
-    path("attractions/", include("attractions.api.urls")), # all APIs for getting attractions and outings info
+    path("", include("attractions.api.urls")), # all APIs for getting attractions and outings info
 ]
-
-# add to settings
-SWAGGER_SETTINGS = {
-	"SECURITY_DEFINITIONS": {
-		"Token": {"type": "apiKey", "name": "Authorization",
-		"in": "header"},
-		"Basic": {"type": "basic"},
-	}
-}
