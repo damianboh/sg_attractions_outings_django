@@ -31,7 +31,7 @@ class Dev(Configuration):
     DEBUG = values.BooleanValue(True)
 
     BASE_URL = values.Value()
-    ALLOWED_HOSTS = [BASE_URL]
+    ALLOWED_HOSTS = [str(BASE_URL)]
 
     # Application definition
 
