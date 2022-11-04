@@ -199,6 +199,7 @@ class Dev(Configuration):
     CELERY_RESULT_BACKEND = values.Value("django-db")
     CELERY_BROKER_URL = values.Value()
     CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
+    USE_CELERY = False
 
 
 class Prod(Dev): # settings for production

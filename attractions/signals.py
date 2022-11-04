@@ -1,10 +1,11 @@
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from django.conf import settings
 
 from attractions.models import OutingInvitation
 from attractions.tasks import send_invitation, send_attendance_change
 
-USE_CELERY = True
+USE_CELERY = settings.USE_CELERY
 
 
 # when invitation is created, send invitation email to invitee
