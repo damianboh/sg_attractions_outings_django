@@ -9,7 +9,7 @@ Django Webapp that allows users to:
 - search for attractions in Singapore
 - create outings to any attraction
 - invite other users for the outings
-- REST API is avaiable for users to do the above also
+- REST API endpoints available for users to do the above also
 
 The Singapore Tourism Info Hub API is used to populate attractions data in the internal SQL database.
 
