@@ -74,7 +74,7 @@ The <a href='https://tih-dev.stb.gov.sg/api-products-documentation'>Singapore To
   - Half an hour before an outing is starting, all the confirmed attendees, and the creator, are **emailed a reminder notification**.
 - To turn on Celery, set USE_CELERY to True in settings.py. Note that with Celery turned off, all email notifications will still be sent, except for reminder emails.
 
-![image](https://user-images.githubusercontent.com/9307190/199940936-0bb4b1f0-d91c-4151-adc0-1e3b20a7e5ba.png)
+![image](https://user-images.githubusercontent.com/9307190/199947236-99557290-f5f5-4662-83a8-908081ab33f6.png)
 
 ![image](https://user-images.githubusercontent.com/9307190/199941985-d071fee6-de5c-40ef-a00b-46f075ecaf11.png)
 
