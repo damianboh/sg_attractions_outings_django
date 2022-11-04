@@ -9,11 +9,11 @@ Django Webapp that allows users to:
 - search for attractions in Singapore
 - create outings to any attraction
 - invite other users for the outings
-- REST API endpoints available for users to do the above also
+- REST API endpoints are available for users to pull information and perform tasks
 
 The Singapore Tourism Info Hub API is used to populate attractions data in the internal SQL database.
 
-**Celery** with a **Redis** broker, Celery Beat, and Django signals are used for sending and scheduling email reminders, updates and invites to users.
+**Celery**, Celery Beat, and Django signals can be used for sending and scheduling email reminders, updates and invites to users. (Celery can be turned on by setting USE_CELERY to True in settings.py, currently deployment is with Celery turned off.)
 
 **REST API** is implemented with Django REST Framework for users to query for attractions, outings and outing invites.
 
@@ -65,12 +65,12 @@ The Singapore Tourism Info Hub API is used to populate attractions data in the i
 ## 5. Email Notifications and Async Processes
 
 - Celery is used when email notifications are sent via an async process for smoother experience.
-- Redis is used as the broker for Celery task queue.
 - Django signal is sent when an invitation is sent by the outing creator, and when a user updates attendance, to implement the following:
   - Users will **receive an invitation email when they're invited** to an outing.
   - Creator of the outing will **receive an update email when invitees change their attendance** status.
 - Django Celery Beat is used for task scheduling to implement the following:
   - Half an hour before an outing is starting, all the confirmed attendees, and the creator, are **emailed a reminder notification**.
+- To turn on Celery, set USE_CELERY to True in settings.py. Note that with Celery turned off, all email notifications will still be sent, except for reminder emails.
 
 ![image](https://user-images.githubusercontent.com/9307190/199940936-0bb4b1f0-d91c-4151-adc0-1e3b20a7e5ba.png)
 
