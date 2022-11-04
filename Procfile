@@ -1,3 +1,3 @@
 web: python manage.py migrate 
-web: unicorn sg_attractions_outings.wsgi 
+web: gunicorn sg_attractions_outings.wsgi 
 worker: celery -A sg_attractions_outings worker -B --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
