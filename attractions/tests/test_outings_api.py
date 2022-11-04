@@ -16,6 +16,7 @@ from django.db.models import signals
 
 from rest_framework.authtoken.models import Token
 
+
 class OutingsAPITests(TestCase):
     """ 
     Only creator and invitee should be able to view outing details.
@@ -46,6 +47,7 @@ class OutingsAPITests(TestCase):
                 )
         ]
 
+        # no one invited to this outing
         self.outing_not_invited = Outing.objects.create(
             attraction = attraction, 
             start_time = timezone.now() + datetime.timedelta(days=3),

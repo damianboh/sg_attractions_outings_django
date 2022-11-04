@@ -136,8 +136,6 @@ class OutingInvitationViewSet(
     serializer_class = OutingInvitationSerializer
     permission_classes = [IsAuthenticated & permissions.IsInviteePermission]
 
-
-
     def get_queryset(self):
         return OutingInvitation.objects.filter(invitee=self.request.user.profile)
 

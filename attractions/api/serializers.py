@@ -67,9 +67,6 @@ class OutingInvitationSerializer(serializers.ModelSerializer):
 
 # need to validate_invitee before creation, invitee might have been already invited
 class OutingInvitationCreationSerializer(serializers.ModelSerializer):
-    invitee = serializers.HyperlinkedRelatedField(
-        "profile_detail", queryset=Profile.objects.all(), lookup_field="pk"
-    )
 
     class Meta:
         model = OutingInvitation
