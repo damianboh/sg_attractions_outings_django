@@ -14,6 +14,7 @@ from pathlib import Path
 from configurations import Configuration, values
 import dj_database_url
 from datetime import timedelta
+import os
 
 class Dev(Configuration):
 
@@ -85,12 +86,7 @@ class Dev(Configuration):
     # Database
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+    DATABASES = values.DatabaseURLValue(f"sqlite:///{{BASE_DIR}}/db.sqlite3")
 
     # Custom User Model and Registration    
     AUTH_USER_MODEL = "custom_auth.User" 
@@ -200,4 +196,3 @@ class Prod(Dev): # settings for production
     DEBUG = False
     SECRET_KEY = values.SecretValue() # read from environment variable only
     ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0"]) # read from environment variable string
-    DATABASES = values.DatabaseURLValue(f"sqlite:///{{BASE_DIR}}/db.sqlite3")
