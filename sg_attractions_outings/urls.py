@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django_registration.backends.activation.views import RegistrationView
-import custom_auth
+from django.conf import settings
 from custom_auth.forms import RegistrationForm
 from . import views
 
@@ -33,5 +33,6 @@ urlpatterns = [
     path("accounts/", include("custom_auth.urls")),    
     path("attractions/", include("attractions.urls")),  
     path("api/v1/", include("sg_attractions_outings.api_urls")), # api urls in separate file in same folder
-    
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
