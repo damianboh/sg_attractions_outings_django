@@ -30,7 +30,8 @@ class Dev(Configuration):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(True)
 
-    ALLOWED_HOSTS = []
+    BASE_URL = values.Value()
+    ALLOWED_HOSTS = BASE_URL
 
     # Application definition
 
@@ -125,8 +126,6 @@ class Dev(Configuration):
     EMAIL_USE_TLS = values.BooleanValue(True)
     EMAIL_HOST_USER = values.Value()
     EMAIL_HOST_PASSWORD = values.Value()
-
-    BASE_URL = values.Value()
 
     # for Django REST Framework
     REST_FRAMEWORK = {
