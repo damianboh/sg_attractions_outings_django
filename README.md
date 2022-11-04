@@ -80,8 +80,6 @@ The <a href='https://tih-dev.stb.gov.sg/api-products-documentation'>Singapore To
 
 ## 6. Models
 
-![image](https://user-images.githubusercontent.com/9307190/199877980-506fa631-06da-4d8b-b187-37cc16b3a43c.png)
-
 Models created for this app, as well as a brief description and how they are related among each other are shown below.
 
 - **SearchTerm**
@@ -107,7 +105,8 @@ Models created for this app, as well as a brief description and how they are rel
 - **Profile**
   - Attribute user has One to One Relationship with User object (profile extends on the User object to include more fields such as 'about')
   - signals are used to sync between changes in profile and user so their names and emails are synced up (using post\_save signals)
-
+  
+  ![image](https://user-images.githubusercontent.com/9307190/199954914-47ae167b-c0cb-4dc2-b6e7-e1166af66ebd.png)
 
 ## 7. Configurations
 
