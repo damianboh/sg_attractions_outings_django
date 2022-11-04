@@ -18,7 +18,7 @@
             {% endif %}
             <div class="mb-3"> 
                 <h2 class="mt-2 text-profile-header">{{ attraction.name }}</h2>
-                <h6 class="theme-color lead"><a href={{ attraction.website_url }}>{{ attraction.website_url }}</a></h6>        
+                <a style="display: inline-block;" href={{ attraction.website_url }}>View Website</a>
             </div>           
      
             {% for tag in attraction.tags.all %}
