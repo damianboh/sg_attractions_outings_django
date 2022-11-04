@@ -14,6 +14,7 @@ from pathlib import Path
 from configurations import Configuration, values
 from datetime import timedelta
 import dj_database_url
+import os
 
 class Dev(Configuration):
 
@@ -59,6 +60,7 @@ class Dev(Configuration):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
     ]
 
     ROOT_URLCONF = 'sg_attractions_outings.urls'
@@ -178,6 +180,8 @@ class Dev(Configuration):
     STATICFILES_DIRS = [
         BASE_DIR / "static",
     ]
+
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
     # Default primary key field type
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
