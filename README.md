@@ -46,6 +46,8 @@ The Singapore Tourism Info Hub API is used to populate attractions data in the i
 - If a user searches for a term that has been searched before (by any user) **in the last 24 hours** , the attraction results are **returned from the internal database** for a smoother experience. External API will not be queried.
 - Users can save attractions to favourites.
 
+![image](https://user-images.githubusercontent.com/9307190/199877890-0a4b1d3b-29cf-4d9a-8895-eeb3c8dbe777.png)
+
 
 ## 4. Creating an Outing and Inviting Other Users
 
@@ -67,6 +69,8 @@ The Singapore Tourism Info Hub API is used to populate attractions data in the i
 
 
 ## 6. Models
+
+![image](https://user-images.githubusercontent.com/9307190/199877980-506fa631-06da-4d8b-b187-37cc16b3a43c.png)
 
 Models created for this app, as well as a brief description and how they are related among each other are shown below.
 
