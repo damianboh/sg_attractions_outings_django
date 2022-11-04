@@ -35,6 +35,8 @@ The Singapore Tourism Info Hub API is used to populate attractions data in the i
 
 ## 3. Searching and Adding Attractions to Favourites
 
+![image](https://user-images.githubusercontent.com/9307190/199877660-d6a72489-b252-4a9a-8bd8-2f0eb609a3e2.png)
+
 - Users can search for an attraction by a search term (e.g. museum, park, zoo etc.)
 - After a search happens, the attraction data will be **retrieved from Singapore Tourism Hub** ONLY IF the term **has not been searched in the past 24 hours**.
 - The API will return data that consists of details of different attractions. Corresponding Attraction objects will be created in the database, populated by data from the API.
