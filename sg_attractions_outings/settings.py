@@ -53,11 +53,13 @@ class Dev(Configuration):
         "rest_framework.authtoken",
         "drf_yasg",
         'whitenoise.runserver_nostatic',
+        'corsheaders',
     ]
 
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
         'whitenoise.middleware.WhiteNoiseMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
@@ -201,4 +203,5 @@ class Dev(Configuration):
 class Prod(Dev): # settings for production
     DEBUG = values.BooleanValue(False)
     SECRET_KEY = values.SecretValue() # read from environment variable only
-    ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", "sg-attractions-outings.up.railway.app"]) # read from environment variable string
+    ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", "sg-attractions-outings.up.railway.app"])
+    CSRF_TRUSTED_ORIGINS = values.ListValue(["localhost", "0.0.0.0", "sg-attractions-outings.up.railway.app"])
