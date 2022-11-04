@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from configurations import Configuration, values
 from datetime import timedelta
+import dj_database_url
 
 class Dev(Configuration):
 
@@ -84,7 +85,8 @@ class Dev(Configuration):
     # Database
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-    DATABASES = values.DatabaseURLValue(f"sqlite:///{{BASE_DIR}}/db.sqlite3")
+    DATABASE_URL = values.Value()
+    DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
     # Custom User Model and Registration    
     AUTH_USER_MODEL = "custom_auth.User" 
