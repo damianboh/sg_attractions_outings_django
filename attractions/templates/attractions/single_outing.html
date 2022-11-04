@@ -4,8 +4,8 @@
 {% block title %}Profile{% endblock %}
 {% block top_content %}<h1 class="text-light text-center">Outing Invitation</h1>{% endblock %} 
 {% block content %}   
-    <div class="container-md attraction-box pt-5 pb-5"  >            
-        <div class="pt-3 pb-3 px-5 rounded" style="background-color: #ffffff;">
+    <div class="container-md attraction-box py-3 py-md-5"  >            
+        <div class="py-2 px-3 py-md-3 px-md-5 rounded" style="background-color: #ffffff;">
             {% if messages %}
                 {% for message in messages %}
                 <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-bs-autohide="false">
@@ -19,12 +19,12 @@
 
             <div class="my-3"> 
                 <h2 class="mt-3 text-profile-header">Outing for {{ outing.attraction.name }}</h2>
-                <h6 class="theme-color lead"><a href={{ outing.attraction.website_url }}>{{ outing.attraction.website_url }}</a></h6>        
+                <a href={{ outing.attraction.website_url }}>Visit Website</a>     
             </div>  
             
             <h6 class="my-3" style="color: #555555;">By {{ outing.creator }} ({{ outing.creator.email }})</h6>
           
-            <h3><span class="badge text-muted my-2" style="background-color: #efefef;">Scheduled for: {{ outing.start_time }}</span></h3> 
+            <div class="text-muted"><h4>Scheduled for: {{ outing.start_time }}</h4></div> 
     
             <hr class="line my-4">
             <h3 class="mt-2 mb-2 text-profile-header">Attraction Summary</h3>

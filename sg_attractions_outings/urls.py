@@ -23,7 +23,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('admin/', admin.site.urls),
+    path('admin_manager/', admin.site.urls),
     path(
         "accounts/register/",
         RegistrationView.as_view(form_class=RegistrationForm),

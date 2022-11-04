@@ -14,12 +14,12 @@
     </h5>
     <br><br>
     {% if request.user.is_anonymous %}
-        <a class="btn btn-outline-light btn-lg" href="{% url "login" %}">Log In</a>
-        <a class="btn btn-outline-light btn-lg" href="{% url "django_registration_register" %}">Sign Up Now</a>
+        <a class="btn btn-outline-light btn-lg my-1" href="{% url "login" %}">Log In</a>
+        <a class="btn btn-outline-light btn-lg my-1" href="{% url "django_registration_register" %}">Sign Up Now</a>
     {% else %}
-        <a class="btn btn-outline-light btn-lg" href="{% url "outings" %}">View My Outings</a>
-        <a class="btn btn-outline-light btn-lg" href="{% url "search_attractions" %}">Search Attractions</a>
-        <a class="btn btn-outline-light btn-lg" href="{% url "saved_attractions" %}">View Saved Attractions</a>
+        <a class="btn btn-outline-light btn-lg my-1" href="{% url "outings" %}">View My Outings</a>
+        <a class="btn btn-outline-light btn-lg my-1" href="{% url "search_attractions" %}">Search Attractions</a>
+        <a class="btn btn-outline-light btn-lg my-1" href="{% url "saved_attractions" %}">View Saved Attractions</a>
     {% endif %}
 </div>      
 {% endblock %}
