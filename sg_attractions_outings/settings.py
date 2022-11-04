@@ -204,4 +204,4 @@ class Prod(Dev): # settings for production
     DEBUG = values.BooleanValue(False)
     SECRET_KEY = values.SecretValue() # read from environment variable only
     ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", "sg-attractions-outings.up.railway.app"])
-    CSRF_TRUSTED_ORIGINS = values.ListValue(["localhost", "0.0.0.0", "sg-attractions-outings.up.railway.app"])
+    CSRF_TRUSTED_ORIGINS = values.ListValue(["https://sg-attractions-outings.up.railway.app"])
