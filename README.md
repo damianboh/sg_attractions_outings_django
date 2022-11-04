@@ -15,6 +15,7 @@ The Singapore Tourism Info Hub API is used to populate attractions data in the i
 
 **REST API** is implemented with Django REST Framework for users to query for attractions, outings and outing invites.
 
+![image](https://user-images.githubusercontent.com/9307190/199877457-8d721bdb-f0b3-4ca8-990f-5ca6bd75a960.png)
 
 ## 1. Custom Authentication and User Profile
 
