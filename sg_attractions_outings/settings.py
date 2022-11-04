@@ -12,9 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from configurations import Configuration, values
-import dj_database_url
 from datetime import timedelta
-import os
 
 class Dev(Configuration):
 
