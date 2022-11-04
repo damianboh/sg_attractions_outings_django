@@ -11,7 +11,7 @@ Django Webapp that allows users to:
 - search for attractions in Singapore
 - create outings to any attraction
 - invite other users for the outings
-- REST API endpoints are available for users to pull information and perform tasks
+- access REST API endpoints to pull information and perform tasks (JWT authorization mechanism)
 
 The <a href='https://tih-dev.stb.gov.sg/api-products-documentation'>Singapore Tourism Info Hub API</a> is used to populate attractions data in the internal SQL database.
 
