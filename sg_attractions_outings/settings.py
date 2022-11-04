@@ -29,7 +29,7 @@ class Dev(Configuration):
     SECRET_KEY = 'django-insecure-s!&a3ve&b9t_@t&%#n+6&&8kwv8ly6-$y)2y*($w=km^+_kvrp'
 
     # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = values.BooleanValue(True)
+    DEBUG = False
 
     BASE_URL = values.Value()
     ALLOWED_HOSTS = []
