@@ -92,11 +92,11 @@ def saved_attractions(request):
 def outings(request):
     created_outings = request.user.profile.created_outings.all()
     invited_outings = Outing.objects.filter(
-        outing_invites__in = OutingInvitation.objects.filter(invitee=request.user.profile),
+        outing_invites__in = OutingInvitation.objects.filter(invitee=request.user.profile).distinct(),
     )
 
     # context = {"page_group": "outings", "created_outings": created_outings, "invited_outings": invited_outings}
-    context = {"page_group": "outings", "outings": created_outings | invited_outings}
+    context = {"page_group": "outings", "outings": (created_outings | invited_outings).distinct()}
 
     return render(request, "attractions/outings.html", context)
 
