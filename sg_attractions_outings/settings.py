@@ -24,6 +24,10 @@ class Dev(Configuration):
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+    # SECRET_KEY for debug
+    # SECURITY WARNING: keep the SECRET_KEY used in production secret!
+    SECRET_KEY = 'django-insecure-s!&a3ve&b9t_@t&%#n+6&&8kwv8ly6-$y)2y*($w=km^+_kvrp'
+
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(True)
 
