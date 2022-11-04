@@ -56,6 +56,11 @@ The Singapore Tourism Info Hub API is used to populate attractions data in the i
 - Users can **confirm their attendance** by choosing whether they are attending or not. They can switch back and forth between these states.
 - Only invited users or creator can access the outing detail page, and they can comment on the page.
 
+![image](https://user-images.githubusercontent.com/9307190/199940057-3a094461-43fb-4a77-8e27-49608c00d120.png)
+
+![image](https://user-images.githubusercontent.com/9307190/199940716-c34d4291-5bf2-40aa-ac25-b77b5fc2c3cf.png)
+
+![image](https://user-images.githubusercontent.com/9307190/199941636-92da8f44-9074-4e57-ad3a-8f04b8025b1f.png)
 
 ## 5. Email Notifications and Async Processes
 
@@ -67,6 +72,9 @@ The Singapore Tourism Info Hub API is used to populate attractions data in the i
 - Django Celery Beat is used for task scheduling to implement the following:
   - Half an hour before an outing is starting, all the confirmed attendees, and the creator, are **emailed a reminder notification**.
 
+![image](https://user-images.githubusercontent.com/9307190/199940936-0bb4b1f0-d91c-4151-adc0-1e3b20a7e5ba.png)
+
+![image](https://user-images.githubusercontent.com/9307190/199941985-d071fee6-de5c-40ef-a00b-46f075ecaf11.png)
 
 ## 6. Models
 
@@ -108,3 +116,9 @@ Models created for this app, as well as a brief description and how they are rel
 
 - Users can query for profiles, attractions, attraction tags, outings and outing invites via the **REST API**.
 - Users can send invites for outings.
+- Users have to be authenticated to use some of the endpoints here.
+- Authentication is done through token authentication and with simple-jwt integration.
+- A list of endpoints is available on Swagger UI <a href='https://sg-attractions-outings.up.railway.app/api/v1/swagger/'>https://sg-attractions-outings.up.railway.app/api/v1/swagger/</a>.
+
+![image](https://user-images.githubusercontent.com/9307190/199942236-79088189-a2ef-4f2b-8d41-82c6ce261012.png)
+
