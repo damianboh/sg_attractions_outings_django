@@ -7,6 +7,7 @@ Django Webapp that allows users to:
 - search for attractions in Singapore
 - create outings to any attraction
 - invite other users for the outings
+- REST API is avaiable for users to do the above also
 
 The Singapore Tourism Info Hub API is used to populate attractions data in the internal SQL database.
 
@@ -17,7 +18,7 @@ The Singapore Tourism Info Hub API is used to populate attractions data in the i
 
 ## 1. Custom Authentication and User Profile
 
-- Under custom\_auth app, **custom UserManager**** and User model** is created to implement the following:
+- Under custom\_auth app, **custom UserManager** and **User model** is created to implement the following:
   - Users register with their email address and a password, instead of the default username and password, an additional field of the user's name is also required when registering.
   - Users **log in with email address** instead of the default username.
 - Custom **Profile model** is created that has a one to one relationship with the User model. This is to allow additional fields such as 'About' which is a paragraph describing the user.
@@ -33,7 +34,7 @@ The Singapore Tourism Info Hub API is used to populate attractions data in the i
 ## 3. Searching and Adding Attractions to Favourites
 
 - Users can search for an attraction by a search term (e.g. museum, park, zoo etc.)
-- After a search happens, the attraction data will be **retrieved from Singapore Tourism Hub**** ONLY IF the term **** has not been searched in the past 24 hours**.
+- After a search happens, the attraction data will be **retrieved from Singapore Tourism Hub** ONLY IF the term **has not been searched in the past 24 hours**.
 - The API will return data that consists of details of different attractions. Corresponding Attraction objects will be created in the database, populated by data from the API.
   - **Only a few fields of each database will be populated** after the search to prevent overloading.
   - This fields populated are 'uuid', 'name', 'attraction\_type' and 'summary'. Fields with larger size such as 'full\_description' or fields that require the creation of other objects such as 'tags' will not be populated at this stage.
