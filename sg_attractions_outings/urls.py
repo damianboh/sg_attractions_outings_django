@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django_registration.backends.activation.views import RegistrationView
 from django.conf import settings
+from django.conf.urls.static import static
 from custom_auth.forms import RegistrationForm
 from . import views
 
