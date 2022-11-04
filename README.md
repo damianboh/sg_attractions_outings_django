@@ -122,5 +122,5 @@ Models created for this app, as well as a brief description and how they are rel
 - Authentication is done through token authentication and with simple-jwt integration.
 - A list of endpoints is available on Swagger UI <a href='https://sg-attractions-outings.up.railway.app/api/v1/swagger/'>https://sg-attractions-outings.up.railway.app/api/v1/swagger/</a>.
 
-![image](https://user-images.githubusercontent.com/9307190/199942236-79088189-a2ef-4f2b-8d41-82c6ce261012.png)
+![image](https://user-images.githubusercontent.com/9307190/199946158-37e89cbb-46ac-4fde-aa39-937f45284ee1.png)
 
