@@ -60,7 +60,7 @@ The Singapore Tourism Info Hub API is used to populate attractions data in the i
 
 ![image](https://user-images.githubusercontent.com/9307190/199940716-c34d4291-5bf2-40aa-ac25-b77b5fc2c3cf.png)
 
-![image](https://user-images.githubusercontent.com/9307190/199941636-92da8f44-9074-4e57-ad3a-8f04b8025b1f.png)
+![image](https://user-images.githubusercontent.com/9307190/199943410-78cea10c-5912-44a8-8250-b91412246def.png)
 
 ## 5. Email Notifications and Async Processes
 
