@@ -198,6 +198,7 @@ class Dev(Configuration):
     # For Celery Async Tasks
     CELERY_RESULT_BACKEND = values.Value("django-db")
     CELERY_BROKER_URL = values.Value()
+    CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
 
 
 class Prod(Dev): # settings for production
