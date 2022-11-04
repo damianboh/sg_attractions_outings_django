@@ -1,5 +1,7 @@
 ﻿# Singapore Attractions Outings Django Webapp
  
+Currently deployed on <a href='https://sg-attractions-outings.up.railway.app/'>https://sg-attractions-outings.up.railway.app/</a> with a PostgreSQL database on railway.app.
+ 
  ![image](https://user-images.githubusercontent.com/9307190/199877457-8d721bdb-f0b3-4ca8-990f-5ca6bd75a960.png)
 
 ## Overview
