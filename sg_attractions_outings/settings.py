@@ -31,7 +31,7 @@ class Dev(Configuration):
     DEBUG = values.BooleanValue(True)
 
     BASE_URL = values.Value()
-    ALLOWED_HOSTS = [str(BASE_URL)]
+    ALLOWED_HOSTS = []
 
     # Application definition
 
@@ -196,6 +196,6 @@ class Dev(Configuration):
 
 
 class Prod(Dev): # settings for production
-    DEBUG = False
+    DEBUG = values.BooleanValue(False)
     SECRET_KEY = values.SecretValue() # read from environment variable only
-    ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0"]) # read from environment variable string
+    ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", "sg-attractions-outings.up.railway.app"]) # read from environment variable string
