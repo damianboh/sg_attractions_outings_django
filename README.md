@@ -12,6 +12,7 @@ Django Webapp that allows users to:
 - create outings to visit any attraction
 - invite other users for the outings
 - update attendance if invited to any outing
+- get email reminders and notifications for outings, invitations, attendance updates
 - access REST API endpoints to pull information and perform above tasks (JWT authorization mechanism)
 
 The <a href='https://tih-dev.stb.gov.sg/api-products-documentation'>Singapore Tourism Info Hub API</a> is used to populate attractions data in the internal SQL database.
