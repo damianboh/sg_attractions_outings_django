@@ -31,7 +31,7 @@ The <a href='https://tih-dev.stb.gov.sg/api-products-documentation'>Singapore To
 
 ## 2. API Client to Pull Data from Singapore Tourism Info Hub API to Internal Database
 
-- _external\_api/tourism\_hub\_client.py_: **Standalone External Tourism Hub API Client** is included to pull data from Singapore Tourism Hub and map it to a Python object. _Client is a standalone from Django Project_, feel free to use this client in any of your Python projects.
+- **Standalone External Tourism Hub API Client** is created in _external\_api/tourism\_hub\_client.py_ to pull data from Singapore Tourism Hub and map it to a Python object. _Client is a standalone from Django Project_, feel free to use this client in any of your Python projects.
 - **Tourism Hub Integration module** (integrated with Django project) uses the above client to populate database subject to certain conditions to implement the features in the next section.
 
 
