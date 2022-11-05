@@ -15,7 +15,7 @@ Django Webapp that allows users to:
 
 The <a href='https://tih-dev.stb.gov.sg/api-products-documentation'>Singapore Tourism Info Hub API</a> is used to populate attractions data in the internal SQL database.
 
-**Celery**, Celery Beat, and Django signals can be used for sending and scheduling email reminders, updates and invites to users. (Celery can be turned on by setting USE_CELERY to True in settings.py, currently deployment is with Celery turned off.)
+**Celery**, Celery Beat, and Django signals can be used for sending and scheduling email reminders, updates and invites to users. (Celery can be turned on by setting USE_CELERY to True in settings.py, current deployment is with Celery turned off.)
 
 **REST API** is implemented with Django REST Framework for users to query for attractions, outings and outing invites.
 
