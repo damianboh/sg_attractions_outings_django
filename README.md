@@ -23,7 +23,7 @@ The <a href='https://tih-dev.stb.gov.sg/api-products-documentation'>Singapore To
 ## 1. Custom Authentication and User Profile
 
 - Under custom\_auth app, **custom UserManager** and **User model** is created to implement the following:
-  - Users register with their email address and a password, instead of the default username and password, an additional field of the user's name is also required when registering.
+  - Users register with their email address (instead of the default username) and password, an additional field of the user's name is also required when registering.
   - Users **log in with email address** instead of the default username.
 - Custom **Profile model** is created that has a one to one relationship with the User model. This is to allow additional fields such as 'About' which is a paragraph describing the user.
   - **Django signals** are used to **sync between changes** to User and Profile models, e.g. when Profile instance is updated with a new email, corresponding User instance is also updated etc.
