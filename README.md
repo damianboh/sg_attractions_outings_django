@@ -17,7 +17,7 @@ The <a href='https://tih-dev.stb.gov.sg/api-products-documentation'>Singapore To
 
 **Celery**, Celery Beat, and Django signals can be used for sending and scheduling email reminders, updates and invites to users. (Celery can be turned on by setting USE_CELERY to True in settings.py, current deployment is with Celery turned off.)
 
-**REST API** is implemented with Django REST Framework for users to query for attractions, outings and outing invites.
+**REST API** endpoints are implemented with Django REST Framework.
 
 
 ## 1. Custom Authentication and User Profile
