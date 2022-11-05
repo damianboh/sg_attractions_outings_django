@@ -29,7 +29,7 @@ The <a href='https://tih-dev.stb.gov.sg/api-products-documentation'>Singapore To
   - **Django signals** are used to **sync between changes** to User and Profile models, e.g. when Profile instance is updated with a new email, corresponding User instance is also updated etc.
 
 
-## 2. Pulling Data from Singapore Tourism Info Hub API to Internal Database
+## 2. API Client to Pull Data from Singapore Tourism Info Hub API to Internal Database
 
 - _external\_api/tourism\_hub\_client.py_: **Standalone External Tourism Hub API Client** is included to pull data from Singapore Tourism Hub and map it to a Python object. _Client is a standalone from Django Project_, feel free to use this client in any of your Python projects.
 - **Tourism Hub Integration module** (integrated with Django project) uses the above client to populate database subject to certain conditions to implement the features in the next section.
