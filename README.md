@@ -43,8 +43,8 @@ The <a href='https://tih-dev.stb.gov.sg/api-products-documentation'>Singapore To
 - After a search happens, the attraction data will be **retrieved from Singapore Tourism Hub** ONLY IF the term **has not been searched in the past 24 hours**.
 - The API will return data that consists of details of different attractions. Corresponding Attraction objects will be created in the database, populated by data from the API.
   - **Only a few fields of each database will be populated** after the search to prevent overloading.
-  - This fields populated are 'uuid', 'name', 'attraction\_type' and 'summary'. Fields with larger size such as 'full\_description' or fields that require the creation of other objects such as 'tags' will not be populated at this stage.
-  - **Only populate these other fields for a full record** of attraction if a user clicks on a particular attraction to **view the attraction in detail**.
+  - This fields populated are _'uuid', 'name', 'attraction\_type'_ and _'summary'_. Fields with larger size such as _'full\_description'_ or fields that require the creation of new objects such as _'tags'_ will not be populated at this stage.
+  - **Only populate these other fields in the database for a full record** of attraction if a user clicks on a particular attraction to **view the attraction in detail**.
 - If a user searches for a term that has been searched before (by any user) **in the last 24 hours** , the attraction results are **returned from the internal database** for a smoother experience. External API will not be queried.
 - Users can save attractions to favourites.
 
