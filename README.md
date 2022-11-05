@@ -123,3 +123,7 @@ Models created for this app, as well as a brief description and how they are rel
 
 ![image](https://user-images.githubusercontent.com/9307190/199946158-37e89cbb-46ac-4fde-aa39-937f45284ee1.png)
 
+## 9. Tests
+
+- Tests are written for crucial parts of the program, such as outing invitation logic (e.g. who is authorised to view/create invitations and outings), user and profile model syncing as well as the REST API endpoints etc. They are available in the tests folder/file in both the custom_auth and the attractions app.
+
